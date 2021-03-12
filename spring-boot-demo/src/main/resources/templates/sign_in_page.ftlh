@@ -104,8 +104,8 @@
         <#if message?has_content>
             <p class="message" ><font color="red"><b>${message}</b></font></p>
         </#if>
-        <input id="login1" type="email" name="email" placeholder="email" class="name"/>
-        <input type="password" name="password" placeholder="password" class="password"/>
+        <input id="login1" type="email" minlength="1" name="email" placeholder="email" class="name"/>
+        <input type="password" name="password" minlength="1" placeholder="password" class="password"/>
         <input type="submit" value="ENTER" class="enter"/>
         <a href="http://localhost:8080/signup">
             <button type="button" class="reg">REGISTRATION</button>

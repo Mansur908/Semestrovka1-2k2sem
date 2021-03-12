@@ -1,36 +1,67 @@
 package ru.itis.demo.controllers;
 
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import ru.itis.demo.repositories.CookieRepository;
+import ru.itis.demo.repositories.FileRepository;
+import ru.itis.demo.repositories.UserRepository;
+import ru.itis.demo.services.interfaces.CookieService;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.io.IOException;
+import java.util.UUID;
 
 @Controller
+@RequestMapping("/profile")
+@RequiredArgsConstructor
 public class ProfileController {
+    private final CookieService cookieService;
+    private final CookieRepository cookieRepository;
+    private final UserRepository userRepository;
 
-    @GetMapping("/profile")
-    public String getSignInPage(HttpServletRequest request, Model model){
-        HttpSession session = request.getSession(false);
-        if (session == null){
-            return "redirect:/signin";
+    @Value("${upload.path}")
+    private String uploadPath;
+
+    @GetMapping
+    public String getSignInPage(@CookieValue(value = "AuthCookie", required = false) String cookieValue,
+                                Model model){
+        if (cookieService.checkCookie(cookieValue)) {
+            model.addAttribute("message",cookieRepository.findByUuid(cookieValue).get().getUser().getUsername());
+            model.addAttribute("image",cookieRepository.findByUuid(cookieValue).get().getUser().getImageName());
+            return "profile_page";
         }
         else {
-            if (getCookieValue(request.getCookies()) != null || session.getAttribute("email") != null)
-                model.addAttribute("message",session.getAttribute("email"));
-                return "profile_page";
+            return "redirect:/signin";
         }
     }
 
-    public static String getCookieValue(Cookie[] a){
-        String str = null;
-        for (Cookie c : a) {
-            if (c.getName().equals("email")) {
-                str = c.getValue();
+    @PostMapping
+    public String addImage(@CookieValue(value = "AuthCookie", required = false) String cookieValue,
+                            @RequestParam("file") MultipartFile file,
+                            Model model) throws IOException {
+        if (file != null){
+            File uploadDir = new File(uploadPath);
+
+            if (!uploadDir.exists()){
+                uploadDir.mkdir();
             }
+
+            String uuidFile = UUID.randomUUID().toString();
+            String resultFileName = uuidFile + "." + file.getOriginalFilename();
+
+            file.transferTo(new File(uploadPath + "/" + resultFileName));
+
+            userRepository.addImageNameByUserId(cookieRepository.findByUuid(cookieValue).get().getUser().getId(),resultFileName);
+
+            model.addAttribute("message",cookieRepository.findByUuid(cookieValue).get().getUser().getUsername());
+            model.addAttribute("image",resultFileName);
+            return "profile_page";
         }
-        return str;
+        return "redirect:/profile";
     }
 }

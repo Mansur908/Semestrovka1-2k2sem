@@ -129,5 +129,7 @@
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-mail:2.4.2" level="project" />
     <orderEntry type="library" name="Maven: com.sun.mail:jakarta.mail:1.6.5" level="project" />
     <orderEntry type="library" name="Maven: com.sun.activation:jakarta.activation:1.2.2" level="project" />
+    <orderEntry type="library" name="Maven: javax:javaee-web-api:8.0" level="project" />
+    <orderEntry type="library" name="jquery" level="application" />
   </component>
 </module>

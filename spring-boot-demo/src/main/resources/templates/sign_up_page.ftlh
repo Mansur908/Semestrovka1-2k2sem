@@ -33,14 +33,24 @@
         .regB{
             margin:160px 500px;
             width:300px;
-            height:220px;
+            height:260px;
             border:1px solid #ffffff;
             border-radius:10px;
             background-color:transparent;
         }
         .name{
             text-align:center;
-            margin:30px 50px;
+            margin:20px 50px;
+            width:200px;
+            height:30px;
+            border:1px solid #000;
+            background-position:7px 7px;
+            outline:none;
+            border-radius:10px;
+        }
+        .email{
+            text-align:center;
+            margin:-10px 50px;
             width:200px;
             height:30px;
             border:1px solid #000;
@@ -50,7 +60,7 @@
         }
         .password{
             text-align:center;
-            margin:-10px 50px;
+            margin:25px 50px;
             width:200px;
             height:30px;
             border:1px solid #000;
@@ -58,7 +68,7 @@
             border-radius:10px;
         }
         .enter{
-            margin:25px 110px;
+            margin:-20px 110px;
             text-align:center;
             width:80px;
             height:25px;
@@ -91,7 +101,7 @@
     </style>
 </head>
 <body class="main">
-<a href="http://localhost:8080/signin">
+<a href="http://localhost:8081/signin">
     <button type="button" class="loginPage">login</button>
 </a>
 <div class = "regB">
@@ -100,8 +110,9 @@
         <#if message?has_content>
             <p class="message" ><font color="red"><b>${message}</b></font></p>
         </#if>
-        <input type="email" name="email" placeholder="email" class="name"/>
-        <input type="password" name="password" placeholder="password" class="password"/>
+        <input type="text" name="username" minlength="1" placeholder="username" class="name"/>
+        <input type="email" name="email" minlength="1" placeholder="email" class="email"/>
+        <input type="password" name="password" minlength="7" placeholder="password" class="password"/>
         <input type="submit" value="ENTER" class="enter"/>
     </form>
 </div>

@@ -9,5 +9,14 @@
 </head>
 <body>
 <h3>Hello ${message}! It is your Profile</h3>
+<form action="/profile" method="post" enctype="multipart/form-data">
+<input type="file" name="file">
+<input type="submit" value="ENTER">
+</form>
+<div>
+    <#if image??>
+    <img height="200px" width="200px" src="/img/${image}">
+    </#if>
+</div>
 </body>
 </html>
