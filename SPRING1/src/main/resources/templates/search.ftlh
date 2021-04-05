@@ -51,7 +51,7 @@
 
         return indexed_array;
     }
-search()
+    search()
 </script>
 <form id="searchForm" action="/search">
     <input name="name" type="text" id="name" placeholder="Введите имя пользователя"/>

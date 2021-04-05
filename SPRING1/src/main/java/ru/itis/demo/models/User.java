@@ -53,4 +53,15 @@ public class User {
         return this.role == Role.ADMIN;
     }
 
+    public String toJson() {
+        return "{" +
+                "\"id\":\"" + id +
+                "\", \"name\":\"" + name +
+                "\", \"email\":\"" + email +
+                "\", \"hashPassword\":\"" + hashPassword +
+                "\", \"image\":\"" + image +
+                "\", \"state\":\"" + state +
+                "\", \"role\":\"" + role +
+                "\"}";
+    }
 }

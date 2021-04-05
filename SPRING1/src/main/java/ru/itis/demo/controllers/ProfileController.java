@@ -38,25 +38,26 @@ public class ProfileController {
     public String addImage(@AuthenticationPrincipal UserDetailsImpl user,
                            @RequestParam("file") MultipartFile file,
                            Model model) throws IOException {
-        if (file != null){
-            File uploadDir = new File(uploadPath);
-
-            if (!uploadDir.exists()){
-                uploadDir.mkdir();
-            }
-
-            String uuidFile = UUID.randomUUID().toString();
-            String resultFileName = uuidFile + "." + file.getOriginalFilename();
-
-            file.transferTo(new File(uploadPath + "/" + resultFileName));
-
-            userRepository.addImageNameByUserId(user.getId(),resultFileName);
-
-            return "redirect:/profile";
-//            model.addAttribute("message",user.getName());
-//            model.addAttribute("image",resultFileName);
-//            return "profile_page";
-        }
+        System.out.println(file);
+//        if (file != null){
+//            File uploadDir = new File(uploadPath);
+//
+//            if (!uploadDir.exists()){
+//                uploadDir.mkdir();
+//            }
+//
+//            String uuidFile = UUID.randomUUID().toString();
+//            String resultFileName = uuidFile + "." + file.getOriginalFilename();
+//
+//            file.transferTo(new File(uploadPath + "/" + resultFileName));
+//
+//            userRepository.addImageNameByUserId(user.getId(),resultFileName);
+//
+//            return "redirect:/profile";
+////            model.addAttribute("message",user.getName());
+////            model.addAttribute("image",resultFileName);
+////            return "profile_page";
+//        }
         return "redirect:/profile";
     }
 }

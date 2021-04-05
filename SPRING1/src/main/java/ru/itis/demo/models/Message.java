@@ -1,6 +1,7 @@
 package ru.itis.demo.models;
 
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -31,4 +32,14 @@ public class Message {
 
     private boolean equalCookie;
 
+
+    public String toJson() {
+        return "{" +
+                "\"id\":\"" + id +
+                "\", \"user\":\"" + user.getName() +
+                "\", \"text\":\"" + text +
+                "\", \"createdAt\":\"" + createdAt +
+                "\", \"equalCookie\":\"" + equalCookie +
+                "\"}";
+    }
 }

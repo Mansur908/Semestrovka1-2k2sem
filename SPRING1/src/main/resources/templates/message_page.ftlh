@@ -1,10 +1,13 @@
 <html lang="en">
 <head>
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <meta name="_csrf" content="${_csrf.token}"/>
+    <meta name="_csrf_header" content="${_csrf.headerName}"/>
+    <title>Document</title>
     <style type="text/css">
         body {
             background-color:#99b1c6;
@@ -12,7 +15,7 @@
             font-family: "Helvetica Neue", Helvetica, sans-serif;
             font-size: 20px;
             font-weight: normal;
-            max-width: 450px;
+            max-width: 530px;
             margin: 20px 430px;
             display: flex;
             flex-direction: column;
@@ -37,7 +40,7 @@
             color: white;
             background: #0B93F6;
             align-self: flex-end;
-            margin:0px 0px 0px 300px;
+            margin:10px 0px 0px 250px;
         }
         from-me:before {
             right:-7px;
@@ -55,6 +58,7 @@
         .from-them {
             background: #E5E5EA;
             color: black;
+            margin:10px 0px 0px -50px;
         }
         from-them:before {
             left:-7px;
@@ -70,13 +74,13 @@
             transform:translate(-30px, -2px);
         }
         .date-me{
-            margin:-12px 410px;
+            margin:-10px 370px;
             color:#000;
             width: max-content;
             font-size: 70%;
         }
         .date-them{
-            margin:-20px 140px;
+            margin:-10px 85px;
             color:#000;
             width: max-content;
             font-size: 70%;
@@ -114,26 +118,98 @@
             border-radius:0px 0px 10px 10px;
         }
     </style>
-    </head>
-    <body>
-    <a href="http://localhost:8081/profile">
-        <button type="button" class="mainPage">main</button>
-    </a>
-    <div class ="search">
-        <form method="post" action="/message">
-            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-            <textarea class="coment" minlength="1" name="text" id="query" placeholder="Enter message"></textarea>
-            <input class="butt" type="submit" />
-        </form>
-        <#list mess?reverse as m>
-            <#if m.equalCookie >
-                <p class="from-me"><font color="black"><small> ${m.user.name} </small></font> <br/> ${m.text} </p>
-                <p class="date-me"> ${m.createdAt} </p>
-            <#else>
-                <p class="from-them"><font color="#0B93F6"><small> ${m.user.name} </small></font> <br/> ${m.text} </p>
-                <p class="date-them"> ${m.createdAt} </p>
-            </#if>
-        </#list>
-    </div>
-    </body>
-    </html>
+</head>
+<body>
+<a href="http://localhost:8080/profile">
+    <button type="button" class="mainPage">main</button>
+</a>
+
+<script type="application/javascript">
+    function search() {
+        let token = $("meta[name='_csrf']").attr("content");
+        let header = $("meta[name='_csrf_header']").attr("content");
+
+        $.ajax({
+            type: "POST",
+            url: "/message",
+            beforeSend: function (request) {
+                request.setRequestHeader(header, token);
+            },
+            contentType: 'application/json',
+            timeout: 600000,
+            success: function (msg) {
+                if ( document.getElementById("del")){
+                    document.getElementById("del").remove();
+                }
+                if (msg.length > 0) {
+                    $('#result').append("<div id=\"del\"></div>");
+                    for (var i = msg.length-1;i >= 0; i--) {
+                        if (msg[i].equalCookie === "true") {
+                            $('#del').append("<div ><p class=\"from-me\"><font color=\"black\"><small>" + msg[i].user + "</small></font> <br/>" + msg[i].text + "</p>\n" +
+                                "<p class=\"date-me\">" + msg[i].createdAt + "</p></div>");
+                        }
+                        else {
+                            $('#del').append("<p class=\"from-them\"><font color=\"#0B93F6\"><small>" + msg[i].user + "</small></font> <br/>" + msg[i].text + "</p>\n" +
+                                "<p class=\"date-them\">" + msg[i].createdAt + "</p>");
+                        }
+                    }
+                }
+            },
+            error: function (err) {
+                console.log(JSON.stringify(err));
+                alert(JSON.stringify(err)+"search");
+            }
+        });
+    }
+    search()
+
+    function f() {
+        let token = $("meta[name='_csrf']").attr("content");
+        let header = $("meta[name='_csrf_header']").attr("content");
+        let data = getFormData($("#mesForm"));
+        console.log(JSON.stringify(data));
+
+        $.ajax({
+            type: "POST",
+            url: "/addMess",
+            beforeSend: function (request) {
+                request.setRequestHeader(header, token);
+            },
+            data: JSON.stringify(data),
+            processData: false,
+            cache: false,
+            contentType: 'application/json',
+            timeout: 600000,
+            success: function () {
+                search();
+            },
+            error: function (err) {
+                console.log(JSON.stringify(err));
+                alert(JSON.stringify(err)+"f");
+            }
+        });
+    }
+    function getFormData($form){
+        var unindexed_array = $form.serializeArray();
+        var indexed_array = {};
+
+        $.map(unindexed_array, function(n, i){
+            indexed_array[n['name']] = n['value'];
+        });
+
+        return indexed_array;
+    }
+</script>
+
+
+<div class ="search">
+    <form id="mesForm" >
+        <textarea class="coment" minlength="1" name="text" id="query" placeholder="Enter message"></textarea>
+        <button class="butt" onclick="f()"  type="button">Отправить</button>
+    </form>
+</div>
+<div id="result">
+
+</div>
+</body>
+</html>

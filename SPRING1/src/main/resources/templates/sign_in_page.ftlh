@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<#import "spring.ftl" as spring/>
 <head>
     <meta charset="UTF-8">
     <title>login</title>
@@ -76,21 +77,23 @@
     </style>
 </head>
 <body class="main">
+<h3><a href="?lang=ru">РУ</a></h3>
+<h3><a href="?lang=en">EN</a></h3>
 <div class = "login">
     <form action="/signin" method="post">
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-        <h2 class="sign">SIGN IN</h2>
+        <h2 class="sign"><@spring.message 'sign_in_page.login.header'/></h2>
         <#if message?has_content>
             <p class="message" ><font color="red"><b>${message}</b></font></p>
         </#if>
-        <input id="login1" type="email" minlength="1" name="email" placeholder="email" class="name"/>
-        <input type="password" name="password" minlength="1" placeholder="password" class="password"/>
+        <input id="login1" type="email" minlength="1" name="email" placeholder=<@spring.message 'sign_in_page.login.placeholder'/> class="name"/>
+        <input type="password" name="password" minlength="1" placeholder=<@spring.message 'sign_in_page.password.placeholder'/> class="password"/>
         <label>
-            <input type="checkbox" name="remember-me">Запомни меня
+            <input type="checkbox" name="remember-me"><@spring.message 'sign_in_page.remember_me'/>
         </label>
-        <input type="submit" value="ENTER" class="enter"/>
+        <input type="submit" value=<@spring.message 'sign_in_page.enter'/> class="enter"/>
         <a href="http://localhost:8080/signup">
-            <button type="button" class="reg">REGISTRATION</button>
+            <button type="button" class="reg"><@spring.message 'sign_in_page.registration'/></button>
         </a>
     </form>
 </div>
