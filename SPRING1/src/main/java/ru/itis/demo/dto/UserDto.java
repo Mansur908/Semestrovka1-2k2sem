@@ -16,7 +16,18 @@ import java.util.stream.Collectors;
 @Builder
 public class UserDto {
     private Long id;
+    private String username;
     private String email;
+    private String code;
+
+//    public static UserDto fromUser(User user) {
+//        return UserDto.builder()
+//                .id(user.getId())
+//                .username(user.getName())
+//                .code(user.getCurrentConfirmationCode())
+//                .email(user.getEmail())
+//                .build();
+//    }
 
     public static UserDto from(User user) {
         return UserDto.builder()

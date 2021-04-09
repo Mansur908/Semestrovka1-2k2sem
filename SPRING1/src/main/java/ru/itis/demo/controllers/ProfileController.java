@@ -29,7 +29,7 @@ public class ProfileController {
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/profile")
     public String getProfilePage(@AuthenticationPrincipal UserDetailsImpl user, Model model) {
-        model.addAttribute("user", user.getName());
+        model.addAttribute("message", user.getName());
         model.addAttribute("image", userRepository.findByEmail(user.getUsername()).get().getImage());
         return "profile_page";
     }
@@ -39,25 +39,25 @@ public class ProfileController {
                            @RequestParam("file") MultipartFile file,
                            Model model) throws IOException {
         System.out.println(file);
-//        if (file != null){
-//            File uploadDir = new File(uploadPath);
-//
-//            if (!uploadDir.exists()){
-//                uploadDir.mkdir();
-//            }
-//
-//            String uuidFile = UUID.randomUUID().toString();
-//            String resultFileName = uuidFile + "." + file.getOriginalFilename();
-//
-//            file.transferTo(new File(uploadPath + "/" + resultFileName));
-//
-//            userRepository.addImageNameByUserId(user.getId(),resultFileName);
-//
+        if (file != null){
+            File uploadDir = new File(uploadPath);
+
+            if (!uploadDir.exists()){
+                uploadDir.mkdir();
+            }
+
+            String uuidFile = UUID.randomUUID().toString();
+            String resultFileName = uuidFile + "." + file.getOriginalFilename();
+
+            file.transferTo(new File(uploadPath + "/" + resultFileName));
+
+            userRepository.addImageNameByUserId(user.getId(),resultFileName);
+
 //            return "redirect:/profile";
-////            model.addAttribute("message",user.getName());
-////            model.addAttribute("image",resultFileName);
-////            return "profile_page";
-//        }
+            model.addAttribute("message",user.getName());
+            model.addAttribute("image",resultFileName);
+            return "profile_page";
+        }
         return "redirect:/profile";
     }
 }

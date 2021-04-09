@@ -53,7 +53,7 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public boolean isAccountNonLocked() {
-        return user.isActive();
+        return user.isActive() && user.isProved();
     }
 
     @Override

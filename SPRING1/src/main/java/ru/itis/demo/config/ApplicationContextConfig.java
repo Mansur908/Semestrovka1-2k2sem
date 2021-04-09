@@ -36,39 +36,39 @@ public class ApplicationContextConfig implements WebMvcConfigurer {
 //    }
 //
 //
-//    @Bean
-//    public ExecutorService executorService() {
-//        int i = Runtime.getRuntime().availableProcessors();
-//        return Executors.newFixedThreadPool(i);
-//    }
-//
-//    @Bean
-//    public Map<String, String> templateParameters() {
-//        Map<String, String> model = new HashMap<>();
-//        model.put("location", environment.getProperty("location"));
-//        model.put("signature", environment.getProperty("link"));
-//        return model;
-//    }
-//
-//    @Bean
-//    @Primary
-//    public JavaMailSender getJavaMailSender() {
-//        JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
-//        mailSender.setHost("smtp.mail.ru");
-//        mailSender.setPort(587);
-//
-//        mailSender.setUsername("top2488@mail.ru");
-//        mailSender.setPassword("mansur1213");
-//
-//        Properties props = mailSender.getJavaMailProperties();
-//        props.put("mail.transport.protocol", "smtp");
-//        props.put("mail.smtp.ssl.trust", "smtp.mail.ru");
-//        props.put("mail.smtp.auth", "true");
-//        props.put("mail.smtp.starttls.enable", "true");
-//        props.put("mail.debug", "true");
-//
-//        return mailSender;
-//    }
+    @Bean
+    public ExecutorService executorService() {
+        int i = Runtime.getRuntime().availableProcessors();
+        return Executors.newFixedThreadPool(i);
+    }
+
+    @Bean
+    public Map<String, String> templateParameters() {
+        Map<String, String> model = new HashMap<>();
+        model.put("location", environment.getProperty("location"));
+        model.put("signature", environment.getProperty("link"));
+        return model;
+    }
+
+    @Bean
+    @Primary
+    public JavaMailSender getJavaMailSender() {
+        JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+        mailSender.setHost("smtp.mail.ru");
+        mailSender.setPort(587);
+
+        mailSender.setUsername("kznnk2000@mail.ru");
+        mailSender.setPassword("mansur1213");
+
+        Properties props = mailSender.getJavaMailProperties();
+        props.put("mail.transport.protocol", "smtp");
+        props.put("mail.smtp.ssl.trust", "smtp.mail.ru");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.debug", "true");
+
+        return mailSender;
+    }
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry){

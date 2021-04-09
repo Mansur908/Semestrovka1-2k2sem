@@ -8,6 +8,8 @@ import ru.itis.demo.models.User;
 import ru.itis.demo.repositories.UserRepository;
 import ru.itis.demo.services.intrfases.SignUpService;
 
+import java.util.UUID;
+
 @Component
 public class SignUpServiceImpl implements SignUpService {
 
@@ -27,6 +29,7 @@ public class SignUpServiceImpl implements SignUpService {
                 .hashPassword(passwordEncoder.encode(form.getPassword()))
                 .role(User.Role.USER)
                 .state(User.State.ACTIVE)
+                .currentConfirmationCode(UUID.randomUUID().toString())
                 .build();
 
         userRepository.save(newUser);

@@ -27,6 +27,11 @@ public class User {
 
     private String image;
 
+    private String currentConfirmationCode;
+
+    @Column(columnDefinition = "boolean default false")
+    private boolean proved;
+
     @Enumerated(value = EnumType.STRING)
     private State state;
 
@@ -51,6 +56,10 @@ public class User {
 
     public boolean isAdmin() {
         return this.role == Role.ADMIN;
+    }
+
+    public boolean isProved(){
+        return this.proved;
     }
 
     public String toJson() {
