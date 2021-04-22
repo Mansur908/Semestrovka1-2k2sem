@@ -38,7 +38,6 @@ public class ProfileController {
     public String addImage(@AuthenticationPrincipal UserDetailsImpl user,
                            @RequestParam("file") MultipartFile file,
                            Model model) throws IOException {
-        System.out.println(file);
         if (file != null){
             File uploadDir = new File(uploadPath);
 

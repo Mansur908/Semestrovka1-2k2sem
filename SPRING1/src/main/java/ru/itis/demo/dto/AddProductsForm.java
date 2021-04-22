@@ -9,6 +9,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 @Data
-public class MessageForm {
+public class AddProductsForm {
+    private String name;
     private String text;
+    private String price;
+    private String type;
+
 }

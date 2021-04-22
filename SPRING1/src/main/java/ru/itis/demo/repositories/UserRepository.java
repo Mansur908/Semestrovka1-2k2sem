@@ -15,6 +15,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     boolean existsByEmail (String email);
 
+    boolean existsById (Long id);
+
     @Query(nativeQuery = true,value = "UPDATE account SET image = :imageName where id = :id returning 1")
     void addImageNameByUserId(Long id,String imageName);
 
@@ -23,4 +25,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
                                            Pageable pageable);
 
     Optional<User> findByCurrentConfirmationCode(String code);
+
+    Optional<User> findById(Long id);
 }

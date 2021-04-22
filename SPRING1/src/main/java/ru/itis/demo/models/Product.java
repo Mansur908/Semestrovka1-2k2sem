@@ -31,9 +31,9 @@ public class Product {
 
     private String image;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "userId")
-    private User user;
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "userId")
+//    private User user;
 
     public static Product from(Product product) {
         return Product.builder()
@@ -43,7 +43,7 @@ public class Product {
                 .text(product.getText())
                 .price(product.getPrice())
                 .image(product.getImage())
-                .user(product.getUser())
+//                .user(product.getUser())
                 .build();
     }
     public static List<Product> from(List<Product> products) {
@@ -61,7 +61,8 @@ public class Product {
                 "\", \"text\":\"" + text +
                 "\", \"price\":\"" + price +
                 "\", \"image\":\"" + image +
-                "\", \"user\":" + user.toJson() +
+                "\""+
+//                "\", \"user\":" + user.toJson() +
                 "}";
     }
 }

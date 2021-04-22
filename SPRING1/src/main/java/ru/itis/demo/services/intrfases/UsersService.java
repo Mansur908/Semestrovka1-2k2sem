@@ -1,7 +1,5 @@
 package ru.itis.demo.services.intrfases;
 
-
-
 import ru.itis.demo.dto.UserDto;
 
 import java.util.List;

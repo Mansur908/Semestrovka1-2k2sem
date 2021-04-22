@@ -73,4 +73,17 @@ public class User {
                 "\", \"role\":\"" + role +
                 "\"}";
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "\"id\":\"" + id +
+                "\", \"name\":\"" + name +
+                "\", \"email\":\"" + email +
+                "\", \"hashPassword\":\"" + hashPassword +
+                "\", \"image\":\"" + image +
+                "\", \"state\":\"" + state +
+                "\", \"role\":\"" + role +
+                "\"}";
+    }
 }

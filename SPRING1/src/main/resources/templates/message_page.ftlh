@@ -1,4 +1,5 @@
 <html lang="en">
+<#import "spring.ftl" as spring/>
 <head>
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <meta charset="UTF-8">
@@ -88,6 +89,7 @@
         .mainPage{
             margin:17px 0px 0px 700px;
             text-align:center;
+            position: absolute;
             width:120px;
             height:25px;
             border:1px solid #ffffff;
@@ -117,11 +119,19 @@
             outline:none;
             border-radius:0px 0px 10px 10px;
         }
+        .a{
+            margin: -30px -400px;
+            position: absolute;
+        }
     </style>
 </head>
 <body>
-<a href="http://localhost:8080/profile">
-    <button type="button" class="mainPage">main</button>
+<div class="a">
+<h4 ><a href="?lang=ru">РУ</a></h4>
+<h4><a href="?lang=en">EN</a></h4>
+</div>
+<a href="http://localhost:8080/products">
+    <button type="button" class="mainPage"><@spring.message 'message.main'/></button>
 </a>
 
 <script type="application/javascript">
@@ -204,8 +214,8 @@
 
 <div class ="search">
     <form id="mesForm" >
-        <textarea class="coment" minlength="1" name="text" id="query" placeholder="Enter message"></textarea>
-        <button class="butt" onclick="f()"  type="button">Отправить</button>
+        <textarea class="coment" minlength="1" name="text" id="query" placeholder=<@spring.message 'message.placeholder'/>></textarea>
+        <button class="butt" onclick="f()"  type="button"><@spring.message 'message.send'/></button>
     </form>
 </div>
 <div id="result">

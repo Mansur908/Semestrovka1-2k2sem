@@ -73,6 +73,46 @@
             background-color:transparent;
             outline:none;
         }
+        .form{
+            margin: -50px 400px;
+            position: absolute;
+        }
+        .b{
+            margin: -170px 1100px;
+            position: absolute;
+            text-align:center;
+            width:120px;
+            height:25px;
+            border:1px solid #ffffff;
+            outline:none;
+            color:#ffffff;
+            border-radius:10px;
+            background-color:transparent;
+        }
+        .b_chat{
+            margin: -170px 580px;
+            position: absolute;
+            text-align:center;
+            width:120px;
+            height:25px;
+            border:1px solid #ffffff;
+            outline:none;
+            color:#ffffff;
+            border-radius:10px;
+            background-color:transparent;
+        }
+        .label1{
+            margin: -18px 5px;
+            position: absolute;
+        }
+        .label2{
+            margin: -18px 60px;
+            position: absolute;
+        }
+        .label3{
+            margin: -18px 25px;
+            position: absolute;
+        }
     </style>
 </head>
 <body onload="document.getElementById('but1').click()">
@@ -87,7 +127,7 @@
 
         $.ajax({
             type: "POST",
-            url: "/sneakers",
+            url: "/products",
             beforeSend: function (request) {
                 request.setRequestHeader(header, token);
             },
@@ -129,41 +169,24 @@
         return indexed_array;
     }
 </script>
-
-<#--<div class="line">-->
-<#--</div>-->
-<#--<div class="pages">-->
-<#--    <a href="http://localhost:8080/sneakers">-->
-<#--        <button type="button" class="but1">Кросовки</button>-->
-<#--    </a>-->
-<#--    <a href="http://localhost:8080/tshorts">-->
-<#--        <button type="button" class="but1">Футболки</button>-->
-<#--    </a>-->
-<#--    <a href="http://localhost:8080/hoodie">-->
-<#--        <button type="button" class="but1">Худи</button>-->
-<#--    </a>-->
-
-<#--</div>-->
-<#--<div class="back">-->
-<#--<#list products as prod>-->
-<#--    <div class="main">-->
-<#--        <div class="name"><h2>${prod.name}</h2></div>-->
-<#--        <div class="discription">${prod.text}</div>-->
-<#--        <div class="price"><h2>${prod.price} руб</h2></div>-->
-<#--        <img class="image" height="180px" width="180px" src="/img/${prod.image}">-->
-<#--    </div>-->
-<#--</#list>-->
-<#--</div>-->
-<form id="searchForm" action="/sneakers">
-<#--    <input name="name" type="text" id="name" placeholder="Введите имя пользователя"/>-->
+<a href="http://localhost:8080/profile">
+    <button type="button" class="b">profile</button>
+</a>
+<a href="http://localhost:8080/message">
+    <button type="button" class="b_chat">chat</button>
+</a>
+<form class="form" id="searchForm" action="/products">
+    <label class="label1">Категория</label>
     <select id="name" name="name">
         <option value="">all</option>
         <option value="hoodie">hoodie</option>
         <option value="sneakers">sneakers</option>
         <option value="tshort">tshort</option>
     </select>
+    <label class="label2">Cтраница</label>
     <input type="number" value="1" name="page" id="page" placeholder="Введите номер страницы"/>
-<#--    <input type="number" name="size" id="size" placeholder="Введите размер страницы"/>-->
+    <label class="label3">Размер страницы</label>
+    <input type="number" value="5" name="size" id="size" placeholder="Введите размер страницы"/>
     <button type="button" id="but1" onclick="search()"> Поиск</button>
 </form>
 <div id="result">

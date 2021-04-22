@@ -20,7 +20,7 @@ public class ProductSearchServiceImpl implements ProductSearchService {
 
     @Override
     public Page<Product> findAllByRequestBody(SearchForm searchForm) {
-        PageRequest pageRequest = PageRequest.of(searchForm.getPage() - 1, 5 , Sort.unsorted());
+        PageRequest pageRequest = PageRequest.of(searchForm.getPage() - 1, searchForm.getSize() , Sort.unsorted());
         Page<Product> productList = productRepository.findAll(searchForm.getName(), pageRequest);
         return productList.map(Product::from);
     }

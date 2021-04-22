@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<#import "spring.ftl" as spring/>
 <head>
     <meta charset="UTF-8">
     <title>Registration</title>
@@ -80,20 +81,22 @@
     </style>
 </head>
 <body class="main">
+<h3><a href="?lang=ru">РУ</a></h3>
+<h3><a href="?lang=en">EN</a></h3>
 <a href="http://localhost:8080/signin">
-    <button type="button" class="loginPage">login</button>
+    <button type="button" class="loginPage"><@spring.message 'sign_up_page.login'/></button>
 </a>
 <div class = "regB">
     <form action="/signup" method="post">
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-        <h2 class="head">REGISTRATION</h2>
+        <h2 class="head"><@spring.message 'sign_up_page.reg.header'/></h2>
         <#if message?has_content>
             <p class="message" ><font color="red"><b>${message}</b></font></p>
         </#if>
-        <input type="text" name="name" minlength="1" placeholder="username" class="name"/>
-        <input type="email" name="email" minlength="1" placeholder="email" class="email"/>
-        <input type="password" name="password" minlength="7" placeholder="password" class="password"/>
-        <input type="submit" value="ENTER" class="enter"/>
+        <input type="text" name="name" minlength="1" placeholder=<@spring.message 'sign_up_page.name.placeholder'/> class="name"/>
+        <input type="email" name="email" minlength="1" placeholder=<@spring.message 'sign_up_page.email.placeholder'/> class="email"/>
+        <input type="password" name="password" minlength="7" placeholder=<@spring.message 'sign_up_page.password.placeholder'/> class="password"/>
+        <input type="submit" value=<@spring.message 'sign_up_page.enter'/> class="enter"/>
     </form>
 </div>
 </body>

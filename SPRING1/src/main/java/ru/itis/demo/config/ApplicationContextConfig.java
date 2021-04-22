@@ -11,6 +11,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -29,13 +30,6 @@ public class ApplicationContextConfig implements WebMvcConfigurer {
     @Value("${upload.path1}")
     private String uploadPath;
 
-
-//    @Bean
-//    public PasswordEncoder encoder() {
-//        return new BCryptPasswordEncoder();
-//    }
-//
-//
     @Bean
     public ExecutorService executorService() {
         int i = Runtime.getRuntime().availableProcessors();
@@ -48,6 +42,11 @@ public class ApplicationContextConfig implements WebMvcConfigurer {
         model.put("location", environment.getProperty("location"));
         model.put("signature", environment.getProperty("link"));
         return model;
+    }
+
+    @Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
     }
 
     @Bean

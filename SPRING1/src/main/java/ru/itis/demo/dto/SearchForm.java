@@ -12,5 +12,5 @@ import lombok.NoArgsConstructor;
 public class SearchForm {
     private String name;
     private int page;
-//    private int size;
+    private int size;
 }

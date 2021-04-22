@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 @Data
-public class MessageForm {
-    private String text;
+public class DeleteProductForm {
+    Long id;
 }
