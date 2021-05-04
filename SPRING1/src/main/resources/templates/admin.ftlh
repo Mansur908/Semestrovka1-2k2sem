@@ -68,11 +68,41 @@
             border-radius:10px;
             background-color:transparent;
         }
+        .mainPage1{
+            margin:-140px 600px;
+            position: absolute;
+            text-align:center;
+            width:120px;
+            height:25px;
+            border:1px solid #ffffff;
+            outline:none;
+            color:#ffffff;
+            border-radius:10px;
+            background-color:transparent;
+        }
+        .mainPage3{
+            margin:-140px 100px;
+            position: absolute;
+            text-align:center;
+            width:120px;
+            height:25px;
+            border:1px solid #ffffff;
+            outline:none;
+            color:#ffffff;
+            border-radius:10px;
+            background-color:transparent;
+        }
     </style>
 </head>
 <body bgcolor="darkkhaki">
 <a href="http://localhost:8080/admindel">
     <button type="button" class="mainPage">Delete product</button>
+</a>
+<a href="http://localhost:8080/adminmes">
+    <button type="button" class="mainPage1">Admin support</button>
+</a>
+<a href="http://localhost:8080/sendSms">
+    <button type="button" class="mainPage3">Send Sms</button>
 </a>
     <div class="d">
         <h3 align="center">Добавление товаров</h3>

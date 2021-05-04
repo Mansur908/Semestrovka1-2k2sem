@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import ru.itis.demo.dto.AddProductsForm;
 import ru.itis.demo.models.Product;
 import ru.itis.demo.repositories.ProductRepository;
+import ru.itis.demo.services.intrfases.AdminService;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,10 +23,7 @@ import java.util.UUID;
 @RequestMapping("/admin")
 @RequiredArgsConstructor
 public class AdminController {
-    private final ProductRepository productRepository;
-
-    @Value("${upload.path}")
-    private String uploadPath;
+    private final AdminService adminService;
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping
@@ -36,21 +34,7 @@ public class AdminController {
     @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping
     public String addProducts(Product form, @RequestParam("file") MultipartFile file, Model model) throws IOException {
-        if (!file.isEmpty()) {
-            File uploadDir = new File(uploadPath);
-            if (!uploadDir.exists()) {
-                uploadDir.mkdir();
-            }
-            String uuidFile = UUID.randomUUID().toString();
-            String resultFileName = uuidFile + "." + file.getOriginalFilename();
-            file.transferTo(new File(uploadPath + "/" + resultFileName));
-
-            form.setImage(resultFileName);
-            productRepository.save(form);
-            model.addAttribute("message","Товар добавлен");
-            return "admin";
-        }
-        model.addAttribute("message","Товар не добавлен");
+        model.addAttribute("message",adminService.addProd(form,file));
         return "admin";
     }
 }

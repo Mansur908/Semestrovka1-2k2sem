@@ -30,7 +30,7 @@
         }
         .email{
             text-align:center;
-            margin:-10px 50px;
+            margin:-10px 50px 10px;
             width:200px;
             height:30px;
             border:1px solid #000;
@@ -78,6 +78,11 @@
             border-radius:10px;
             background-color:transparent;
         }
+        .error{
+            margin: 0px 45px;
+            position: center;
+            color: red;
+        }
     </style>
 </head>
 <body class="main">
@@ -87,15 +92,19 @@
     <button type="button" class="loginPage"><@spring.message 'sign_up_page.login'/></button>
 </a>
 <div class = "regB">
+    <@spring.bind "userForm"/>
     <form action="/signup" method="post">
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
         <h2 class="head"><@spring.message 'sign_up_page.reg.header'/></h2>
+        <div id="a"></div>
         <#if message?has_content>
             <p class="message" ><font color="red"><b>${message}</b></font></p>
         </#if>
-        <input type="text" name="name" minlength="1" placeholder=<@spring.message 'sign_up_page.name.placeholder'/> class="name"/>
-        <input type="email" name="email" minlength="1" placeholder=<@spring.message 'sign_up_page.email.placeholder'/> class="email"/>
-        <input type="password" name="password" minlength="7" placeholder=<@spring.message 'sign_up_page.password.placeholder'/> class="password"/>
+        <input type="text" name="name" minlength="1" placeholder=<@spring.message 'sign_up_page.name.placeholder'/> class="name" required/>
+        <@spring.formInput "userForm.email" "class=\"email\" placeholder=email required" />
+        <@spring.showErrors "<br>" "error"  />
+        <#--        <input type="email" name="email" minlength="1" placeholder=<@spring.message 'sign_up_page.email.placeholder'/> class="email"/>-->
+        <input type="password" name="password" minlength="7" placeholder=<@spring.message 'sign_up_page.password.placeholder'/> class="password" required/>
         <input type="submit" value=<@spring.message 'sign_up_page.enter'/> class="enter"/>
     </form>
 </div>

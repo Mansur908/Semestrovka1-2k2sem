@@ -1,5 +1,19 @@
 <!doctype html>
 <html lang="en">
+<style>
+    .b{
+        margin: 10px 1100px;
+        position: absolute;
+        text-align:center;
+        width:120px;
+        height:25px;
+        border:1px solid #ffffff;
+        outline:none;
+        color:#ffffff;
+        border-radius:10px;
+        background-color:transparent;
+    }
+</style>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -40,11 +54,6 @@
             webSocket.send(JSON.stringify({"text" : "/connected","user_id" : ${userid}}));
         }
 
-        // function sendMessage(text, pageId) {
-        //     let message = {
-        //         "text" : text,
-        //         "from": pageId
-        //     };
         function sendMessage(text) {
             let message = {
                 "text" : text,
@@ -56,10 +65,13 @@
         }
     </script>
 </head>
-<body onload="connect()">
+<body bgcolor="darkkhaki" onload="connect()">
+<a href="http://localhost:8080/products">
+    <button type="button" class="b">products</button>
+</a>
 <div>
     <label for="message">Текст сообщения</label>
-    <input name="message" id="message" placeholder="Сообщение">
+    <input name="message" id="message" placeholder="Сообщение" >
     <button onclick="sendMessage($('#message').val())">Отправить</button>
     <h3>Сообщения</h3>
     <ul id="messagesList">

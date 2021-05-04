@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import ru.itis.demo.security.details.UserDetailsImpl;
 
 @Controller
-public class IndexController {
+public class SupportController {
 
     @PreAuthorize("hasAuthority('USER')")
-    @GetMapping("/index")
+    @GetMapping("/support")
     public String getIndexPage(@AuthenticationPrincipal UserDetailsImpl user, Model model) {
         model.addAttribute("userid", user.getId() );
-        return "index";
+        return "support";
     }
 }
 

@@ -11,6 +11,8 @@ import ru.itis.demo.models.User;
 import ru.itis.demo.repositories.MessageRepository;
 import ru.itis.demo.repositories.UserRepository;
 import ru.itis.demo.security.details.UserDetailsImpl;
+import ru.itis.demo.services.intrfases.MailService;
+import ru.itis.demo.services.intrfases.MessageService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,8 +21,7 @@ import java.util.List;
 @RequestMapping("/message")
 @RequiredArgsConstructor
 public class MessageController {
-    private final UserRepository userRepository;
-    private final MessageRepository messageRepository;
+    private final MessageService messageService;
 
     @PreAuthorize("hasAuthority('USER')")
     @GetMapping
@@ -32,18 +33,6 @@ public class MessageController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public String addMessage(@AuthenticationPrincipal UserDetailsImpl user){
-        User user1 = userRepository.findByEmail(user.getUsername()).get();
-        List<Message> mes = messageRepository.findAll();
-        List<String> messages = new ArrayList<>();
-        for (Message m : mes){
-            if (m.getUser().getId().equals(user1.getId())){
-                m.setEqualCookie(true);
-                messages.add(m.toJson());
-            }
-            else {
-                messages.add(m.toJson());
-            }
-        }
-        return messages.toString();
+        return messageService.addUserMessage(user);
     }
 }

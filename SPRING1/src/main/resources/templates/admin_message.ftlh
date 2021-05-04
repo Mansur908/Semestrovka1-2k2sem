@@ -1,5 +1,19 @@
 <!doctype html>
 <html lang="en">
+<style>
+    .mainPage{
+        margin:20px 1100px;
+        position: absolute;
+        text-align:center;
+        width:120px;
+        height:25px;
+        border:1px solid #ffffff;
+        outline:none;
+        color:#ffffff;
+        border-radius:10px;
+        background-color:transparent;
+    }
+</style>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -37,7 +51,20 @@
             }
         }
         function t(){
-            webSocket.send(JSON.stringify({"text" : "/connected","user_id" : ${userid},"to_user" : $('#to_user').val()}));
+            if ($('#to_user').val().length < 1){
+                if ( document.getElementById("del")){
+                    document.getElementById("del").remove();
+                }
+                $('#messagesList').append("<div id=\"del\"></div>");
+                $('#del').append("<h4>Вы не ввели пользователя</h4>");
+            }
+            else {
+                webSocket.send(JSON.stringify({
+                    "text": "/connected",
+                    "user_id": ${userid},
+                    "to_user": $('#to_user').val()
+                }));
+            }
         }
 
         // function sendMessage(text, pageId) {
@@ -46,20 +73,31 @@
         //         "from": pageId
         //     };
         function sendMessage(text) {
-            let message = {
-                "text" : text,
-                "user_id" : ${userid},
-                "to_user" : $('#to_user').val()
-            };
+            if ($('#to_user').val().length < 1){
+                if ( document.getElementById("del")){
+                    document.getElementById("del").remove();
+                }
+                $('#messagesList').append("<div id=\"del\"></div>");
+                $('#del').append("<h4>Вы не ввели пользователя</h4>");
+            }
+            else {
+                let message = {
+                    "text": text,
+                    "user_id": ${userid},
+                    "to_user": $('#to_user').val()
+                };
 
-            webSocket.send(JSON.stringify(message));
-
+                webSocket.send(JSON.stringify(message));
+            }
         }
     </script>
 </head>
-<body onload="connect()">
+<body bgcolor="darkkhaki" onload="connect()">
+<a href="http://localhost:8080/admin">
+    <button type="button" class="mainPage">Add product</button>
+</a>
 <div>
-    <input id="to_user" placeholder="Введите id получателя">
+    <input id="to_user" placeholder="Введите id получателя" minlength="1" required>
     <button onclick="t()">Показать сообщения</button>
     <label for="message">Текст сообщения</label>
     <input name="message" id="message" placeholder="Сообщение">

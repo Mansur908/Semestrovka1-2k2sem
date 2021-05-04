@@ -27,7 +27,6 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class WebSocketMessagesHandler extends TextWebSocketHandler {
     private final ObjectMapper objectMapper;
-    private final MessageRepository messageRepository;
     private final SupportRepositiry supportRepositiry;
     private final UserRepository userRepository;
 
@@ -35,22 +34,16 @@ public class WebSocketMessagesHandler extends TextWebSocketHandler {
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
         SupportForm message1 = objectMapper.readValue(message.getPayload(), SupportForm.class);
         if (message1.getText().equals("/connected") && message1.getTo_user() != null){
-            System.out.println("1");
             String mes = supportRepositiry.findAllMessages(message1.getTo_user()).toString();
-            System.out.println(mes);
             TextMessage m = new TextMessage(mes);
             session.sendMessage(m);
         }
-        System.out.println(message1);
         if (message1.getText().equals("/connected") && message1.getTo_user() == null) {
-            System.out.println("2");
             String mes = supportRepositiry.findAllMessages(message1.getUser_id()).toString();
             TextMessage m = new TextMessage(mes);
             session.sendMessage(m);
-            System.out.println(m.getPayload());
         }
         if (!message1.getText().equals("/connected") && message1.getTo_user() == null) {
-            System.out.println("3");
             Support support = new Support();
             support.setText(message1.getText());
             support.setUser(userRepository.findById(message1.getUser_id()).get());
@@ -62,12 +55,10 @@ public class WebSocketMessagesHandler extends TextWebSocketHandler {
             session.sendMessage(m);
         }
         if (!message1.getText().equals("/connected") && message1.getTo_user() != null){
-            System.out.println("4");
             if (!userRepository.existsById(message1.getTo_user())){
                 String mes = "[{\"id\":\"0\", \"user\":\"A\", \"text\":\"Пользователь не существует\", \"createdAt\":\"1\", \"isAdmin\":\"true\", \"to_user\":\"null\"}]";
                 TextMessage m = new TextMessage(mes);
                 session.sendMessage(m);
-                System.out.println(m.getPayload());
             }
             else {
                 Support support = new Support();
@@ -81,7 +72,6 @@ public class WebSocketMessagesHandler extends TextWebSocketHandler {
                 String mes = supportRepositiry.findAllMessages(message1.getTo_user()).toString();
                 TextMessage m = new TextMessage(mes);
                 session.sendMessage(m);
-                System.out.println(m.getPayload());
             }
         }
     }

@@ -101,6 +101,18 @@
             border-radius:10px;
             background-color:transparent;
         }
+        .b_support{
+            margin: -170px 100px;
+            position: absolute;
+            text-align:center;
+            width:120px;
+            height:25px;
+            border:1px solid #ffffff;
+            outline:none;
+            color:#ffffff;
+            border-radius:10px;
+            background-color:transparent;
+        }
         .label1{
             margin: -18px 5px;
             position: absolute;
@@ -169,6 +181,9 @@
         return indexed_array;
     }
 </script>
+<a href="http://localhost:8080/support">
+    <button type="button" class="b_support">support</button>
+</a>
 <a href="http://localhost:8080/profile">
     <button type="button" class="b">profile</button>
 </a>

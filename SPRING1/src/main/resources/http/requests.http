@@ -1,1 +1,24 @@
-POST http://localhost:8080/sneakers
+GET http://localhost:8080/restadmindel
+
+
+###
+
+DELETE http://localhost:8080/restadmindel/2
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2IiwibmFtZSI6Ik1hbnN1ciIsImVtYWlsIjoibWFuc3VyMDE1OEBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4ifQ.y_kvPZT7EI8Ck0rn2D_AWO6Yyf6wNZbF0CAX8bXKIBg
+
+###
+GET http://localhost:8080/restsignin
+Content-Type: application/json
+
+{
+  "email":"mansur0158@gmail.com",
+  "password": "1234567"
+}
+###
+POST http://localhost:8080/signin
+Content-Type: application/json
+
+{
+  "email":"mansur0158@gmail.com",
+  "password": "1234567"
+}

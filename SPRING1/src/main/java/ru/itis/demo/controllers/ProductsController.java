@@ -35,6 +35,4 @@ public class ProductsController {
     public String getSearchPage() {
         return "products";
     }
-
-
 }
