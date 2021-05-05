@@ -11,15 +11,17 @@
 <div>
     <table>
         <tr>
-            <th>id</th>
+            <th>name</th>
             <th>email</th>
+            <th>role</th>
+            <th>state</th>
         </tr>
-        <#list usersList as user>
-            <tr>
-                <td>${user.id}</td>
-                <td>${user.email}</td>
-            </tr>
-        </#list>
+        <tr>
+            <td>${name}</td>
+            <td>${email}</td>
+            <td>${role}</td>
+            <td>${state}</td>
+        </tr>
     </table>
 </div>
 </body>

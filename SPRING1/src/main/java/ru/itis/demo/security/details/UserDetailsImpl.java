@@ -6,6 +6,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import ru.itis.demo.models.User;
 
+import javax.management.relation.Role;
 import java.util.Collection;
 import java.util.Collections;
 
@@ -34,6 +35,21 @@ public class UserDetailsImpl implements UserDetails {
 
     public String getImageName() {
         return user.getImage();
+    }
+
+    public String getRole(){
+        return user.getRole().toString();
+    }
+
+    public String getState(){
+        return user.getState().toString();
+    }
+
+    public void setRole(String role){
+        if (role.equals("User"))
+            user.setRole(User.Role.USER);
+        else
+            user.setRole(User.Role.ADMIN);
     }
 
 
