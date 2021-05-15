@@ -46,6 +46,7 @@ public class Product {
 //                .user(product.getUser())
                 .build();
     }
+
     public static List<Product> from(List<Product> products) {
         return products.stream()
                 .map(Product::from)
@@ -61,7 +62,7 @@ public class Product {
                 "\", \"text\":\"" + text +
                 "\", \"price\":\"" + price +
                 "\", \"image\":\"" + image +
-                "\""+
+                "\"" +
 //                "\", \"user\":" + user.toJson() +
                 "}";
     }

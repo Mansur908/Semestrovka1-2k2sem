@@ -5,80 +5,89 @@
     <meta charset="UTF-8">
     <title>Registration</title>
     <style>
-        .main{
-            margin:0px 0px;
-            background-size:100%;
+        .main {
+            margin: 0px 0px;
+            background-size: 100%;
             background-color: cadetblue;
         }
-        .regB{
-            margin:160px 500px;
-            width:300px;
-            height:260px;
-            border:1px solid #ffffff;
-            border-radius:10px;
-            background-color:transparent;
+
+        .regB {
+            margin: 160px 500px;
+            width: 300px;
+            height: 260px;
+            border: 1px solid #ffffff;
+            border-radius: 10px;
+            background-color: transparent;
         }
-        .name{
-            text-align:center;
-            margin:20px 50px;
-            width:200px;
-            height:30px;
-            border:1px solid #000;
-            background-position:7px 7px;
-            outline:none;
-            border-radius:10px;
+
+        .name {
+            text-align: center;
+            margin: 20px 50px;
+            width: 200px;
+            height: 30px;
+            border: 1px solid #000;
+            background-position: 7px 7px;
+            outline: none;
+            border-radius: 10px;
         }
-        .email{
-            text-align:center;
-            margin:-10px 50px 10px;
-            width:200px;
-            height:30px;
-            border:1px solid #000;
-            background-position:7px 7px;
-            outline:none;
-            border-radius:10px;
+
+        .email {
+            text-align: center;
+            margin: -10px 50px 10px;
+            width: 200px;
+            height: 30px;
+            border: 1px solid #000;
+            background-position: 7px 7px;
+            outline: none;
+            border-radius: 10px;
         }
-        .password{
-            text-align:center;
-            margin:25px 50px;
-            width:200px;
-            height:30px;
-            border:1px solid #000;
-            outline:none;
-            border-radius:10px;
+
+        .password {
+            text-align: center;
+            margin: 25px 50px;
+            width: 200px;
+            height: 30px;
+            border: 1px solid #000;
+            outline: none;
+            border-radius: 10px;
         }
-        .enter{
-            margin:-20px 110px;
-            text-align:center;
-            width:80px;
-            height:25px;
-            border:1px solid #ffffff;
-            outline:none;
-            color:#ffffff;
-            border-radius:10px;
-            background-color:transparent
+
+        .enter {
+            margin: -20px 110px;
+            text-align: center;
+            width: 80px;
+            height: 25px;
+            border: 1px solid #ffffff;
+            outline: none;
+            color: #ffffff;
+            border-radius: 10px;
+            background-color: transparent
         }
-        .head{
-            margin:0px;
-            text-align:center;
-            color:#ffffff
+
+        .head {
+            margin: 0px;
+            text-align: center;
+            color: #ffffff
         }
-        .message{
-            margin:5px;
-            text-align:center;
+
+        .message {
+            margin: 5px;
+            text-align: center;
         }
-        .loginPage{
-            margin:17px 0px 0px 1100px;
-            text-align:center;
-            width:120px;
-            height:25px;
-            border:1px solid #ffffff;
-            outline:none;
-            color:#ffffff;
-            border-radius:10px;
-            background-color:transparent;
+
+        .loginPage {
+            margin: 17px 0px 0px 1100px;
+            text-align: center;
+            width: 120px;
+            height: 25px;
+            border: 1px solid #ffffff;
+            outline: none;
+            color: #ffffff;
+            border-radius: 10px;
+            background-color: transparent;
         }
-        .error{
+
+        .error {
             margin: 0px 45px;
             position: center;
             color: red;
@@ -91,20 +100,22 @@
 <a href="http://localhost:8080/signin">
     <button type="button" class="loginPage"><@spring.message 'sign_up_page.login'/></button>
 </a>
-<div class = "regB">
+<div class="regB">
     <@spring.bind "userForm"/>
     <form action="/signup" method="post">
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
         <h2 class="head"><@spring.message 'sign_up_page.reg.header'/></h2>
         <div id="a"></div>
         <#if message?has_content>
-            <p class="message" ><font color="red"><b>${message}</b></font></p>
+            <p class="message"><font color="red"><b>${message}</b></font></p>
         </#if>
-        <input type="text" name="name" minlength="1" placeholder=<@spring.message 'sign_up_page.name.placeholder'/> class="name" required/>
+        <input type="text" name="name" minlength="1"
+               placeholder=<@spring.message 'sign_up_page.name.placeholder'/> class="name" required/>
         <@spring.formInput "userForm.email" "class=\"email\" placeholder=email required" />
         <@spring.showErrors "<br>" "error"  />
         <#--        <input type="email" name="email" minlength="1" placeholder=<@spring.message 'sign_up_page.email.placeholder'/> class="email"/>-->
-        <input type="password" name="password" minlength="7" placeholder=<@spring.message 'sign_up_page.password.placeholder'/> class="password" required/>
+        <input type="password" name="password" minlength="7"
+               placeholder=<@spring.message 'sign_up_page.password.placeholder'/> class="password" required/>
         <input type="submit" value=<@spring.message 'sign_up_page.enter'/> class="enter"/>
     </form>
 </div>

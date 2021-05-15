@@ -1,17 +1,17 @@
 <!doctype html>
 <html lang="en">
 <style>
-    .mainPage{
-        margin:20px 1100px;
+    .mainPage {
+        margin: 20px 1100px;
         position: absolute;
-        text-align:center;
-        width:120px;
-        height:25px;
-        border:1px solid #ffffff;
-        outline:none;
-        color:#ffffff;
-        border-radius:10px;
-        background-color:transparent;
+        text-align: center;
+        width: 120px;
+        height: 25px;
+        border: 1px solid #ffffff;
+        outline: none;
+        color: #ffffff;
+        border-radius: 10px;
+        background-color: transparent;
     }
 </style>
 <head>
@@ -28,7 +28,6 @@
         let webSocket;
 
 
-
         function connect() {
             webSocket = new WebSocket('ws://localhost:8080/chat');
             // setTimeout(t,300);
@@ -36,29 +35,28 @@
             //
             webSocket.onmessage = function receiveMessage(response) {
                 var json = JSON.parse(response['data']);
-                if ( document.getElementById("del")){
+                if (document.getElementById("del")) {
                     document.getElementById("del").remove();
                 }
                 $('#messagesList').append("<div id=\"del\"></div>");
-                for (i = json.length-1; i >= 0; --i) {
+                for (i = json.length - 1; i >= 0; --i) {
                     if (json[i].isAdmin === "true") {
                         $('#del').append("<li>" + "Admin:" + json[i].text + "</li>");
-                    }
-                    else {
+                    } else {
                         $('#del').append("<li>" + "You:" + json[i].text + "</li>");
                     }
                 }
             }
         }
-        function t(){
-            if ($('#to_user').val().length < 1){
-                if ( document.getElementById("del")){
+
+        function t() {
+            if ($('#to_user').val().length < 1) {
+                if (document.getElementById("del")) {
                     document.getElementById("del").remove();
                 }
                 $('#messagesList').append("<div id=\"del\"></div>");
                 $('#del').append("<h4>Вы не ввели пользователя</h4>");
-            }
-            else {
+            } else {
                 webSocket.send(JSON.stringify({
                     "text": "/connected",
                     "user_id": ${userid},
@@ -73,14 +71,13 @@
         //         "from": pageId
         //     };
         function sendMessage(text) {
-            if ($('#to_user').val().length < 1){
-                if ( document.getElementById("del")){
+            if ($('#to_user').val().length < 1) {
+                if (document.getElementById("del")) {
                     document.getElementById("del").remove();
                 }
                 $('#messagesList').append("<div id=\"del\"></div>");
                 $('#del').append("<h4>Вы не ввели пользователя</h4>");
-            }
-            else {
+            } else {
                 let message = {
                     "text": text,
                     "user_id": ${userid},

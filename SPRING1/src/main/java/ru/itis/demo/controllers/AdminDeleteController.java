@@ -30,7 +30,7 @@ public class AdminDeleteController {
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/admindel")
-    public String getPage(Model model)  {
+    public String getPage(Model model) {
         model.addAttribute("json", productService.getProducts().toString());
         return "admin_delete";
     }
@@ -45,23 +45,23 @@ public class AdminDeleteController {
             return "admin_delete";
         }
         productService.deleteProduct(form.getId());
-        model.addAttribute("message","Удалено");
+        model.addAttribute("message", "Удалено");
         model.addAttribute("json", productService.getProducts().toString());
         return "admin_delete";
     }
 
-    @ApiOperation(value ="Получение проектов")
-    @ApiResponses(value = {@ApiResponse(code = 200, message ="Проекты" , response = List.class )})
+    @ApiOperation(value = "Получение проектов")
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "Проекты", response = List.class)})
     @ResponseBody
     @GetMapping("/restadmindel")
-    public List<Product> getPage()  {
+    public List<Product> getPage() {
         return productService.getProducts();
     }
 
-//    @PreAuthorize("hasAuthority('ADMIN')")
+    //    @PreAuthorize("hasAuthority('ADMIN')")
     @ResponseBody
     @DeleteMapping("/restadmindel/{id}")
-    public List<Product> getPage(@PathVariable("id") Long id)  {
+    public List<Product> getPage(@PathVariable("id") Long id) {
         if (!productService.containProduct(id)) {
             return productService.getProducts();
         }

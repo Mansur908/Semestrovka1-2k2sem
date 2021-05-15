@@ -13,7 +13,7 @@ public class AdminMessageController {
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/adminmes")
     public String getIndexPage(@AuthenticationPrincipal UserDetailsImpl user, Model model) {
-        model.addAttribute("userid", user.getId() );
+        model.addAttribute("userid", user.getId());
         return "admin_message";
     }
 }

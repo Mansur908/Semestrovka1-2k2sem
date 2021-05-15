@@ -26,7 +26,10 @@ import java.util.UUID;
 public class ProfileController {
     private final UsersService usersService;
 
-    @PreAuthorize("isAuthenticated()")
+    //    @PreAuthorize("isAuthenticated()")
+//    @PreAuthorize("#userRepository.findByEmail(user.username).get().role == user.role")
+//    @PreAuthorize("#user != null && (user.role == \"USER\" || user.role == \"ADMIN\")")
+    @PreAuthorize("#user != null ")
     @GetMapping("/profile")
     public String getProfilePage(@AuthenticationPrincipal UserDetailsImpl user, Model model) {
         model.addAttribute("message", user.getName());
@@ -34,10 +37,11 @@ public class ProfileController {
         return "profile_page";
     }
 
+    @PreAuthorize("isAuthenticated()")
     @PostMapping("/profile")
     public String addImage(@AuthenticationPrincipal UserDetailsImpl user,
                            @RequestParam("file") MultipartFile file) throws IOException {
-        usersService.addImage(user,file);
+        usersService.addImage(user, file);
         return "redirect:/profile";
     }
 }

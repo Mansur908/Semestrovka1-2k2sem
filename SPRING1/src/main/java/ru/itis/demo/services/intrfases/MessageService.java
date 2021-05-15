@@ -7,5 +7,5 @@ import ru.itis.demo.security.details.UserDetailsImpl;
 public interface MessageService {
     void addMessage(User user, String text);
 
-    String addUserMessage(UserDetailsImpl user);
+    String getUserMessage(UserDetailsImpl user);
 }

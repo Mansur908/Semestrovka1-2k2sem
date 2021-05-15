@@ -33,7 +33,7 @@ public class WebSocketMessagesHandler extends TextWebSocketHandler {
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
         SupportForm message1 = objectMapper.readValue(message.getPayload(), SupportForm.class);
-        if (message1.getText().equals("/connected") && message1.getTo_user() != null){
+        if (message1.getText().equals("/connected") && message1.getTo_user() != null) {
             String mes = supportRepositiry.findAllMessages(message1.getTo_user()).toString();
             TextMessage m = new TextMessage(mes);
             session.sendMessage(m);
@@ -54,13 +54,12 @@ public class WebSocketMessagesHandler extends TextWebSocketHandler {
             TextMessage m = new TextMessage(mes);
             session.sendMessage(m);
         }
-        if (!message1.getText().equals("/connected") && message1.getTo_user() != null){
-            if (!userRepository.existsById(message1.getTo_user())){
+        if (!message1.getText().equals("/connected") && message1.getTo_user() != null) {
+            if (!userRepository.existsById(message1.getTo_user())) {
                 String mes = "[{\"id\":\"0\", \"user\":\"A\", \"text\":\"Пользователь не существует\", \"createdAt\":\"1\", \"isAdmin\":\"true\", \"to_user\":\"null\"}]";
                 TextMessage m = new TextMessage(mes);
                 session.sendMessage(m);
-            }
-            else {
+            } else {
                 Support support = new Support();
                 support.setText(message1.getText());
                 support.setUser(userRepository.findById(message1.getUser_id()).get());

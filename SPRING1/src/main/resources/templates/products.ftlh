@@ -10,29 +10,34 @@
     <meta name="_csrf_header" content="${_csrf.headerName}"/>
     <title>Document</title>
     <style>
-        body{
+        body {
             background-color: darkkhaki;
         }
-        .back{
+
+        .back {
             margin: 200px;
         }
-        .line{
+
+        .line {
             margin: -30px -8px;
             height: 70px;
             background-color: white;
         }
-        .main{
+
+        .main {
             margin: 20px 150px;
             height: 200px;
             width: 600px;
-            border-radius: 10px ;
-            background-color:#99b1c6;
+            border-radius: 10px;
+            background-color: #99b1c6;
         }
-        .image{
+
+        .image {
             border-radius: 15px;
             margin: 10px 10px;
         }
-        .name{
+
+        .name {
             margin: -10px 200px;
             height: 30px;
             width: 400px;
@@ -40,7 +45,8 @@
             position: absolute;
             text-align: center;
         }
-        .discription{
+
+        .discription {
             margin: 50px 200px;
             height: 90px;
             width: 400px;
@@ -48,7 +54,8 @@
             position: absolute;
             text-align: center;
         }
-        .price{
+
+        .price {
             margin: 130px 200px;
             height: 40px;
             width: 400px;
@@ -56,72 +63,81 @@
             position: absolute;
             text-align: center
         }
-        .pages{
+
+        .pages {
             margin: 100px 300px;
             height: 30px;
             width: 700px;
             position: absolute;
         }
-        .but1{
+
+        .but1 {
             margin: 0px -3px;
             height: 30px;
             width: 233px;
             border-left: 1px solid #000000;
             border-top: 2px solid #000000;
             border-bottom: 2px solid #000000;
-            border-right: 1px solid #000000 ;
-            background-color:transparent;
-            outline:none;
+            border-right: 1px solid #000000;
+            background-color: transparent;
+            outline: none;
         }
-        .form{
+
+        .form {
             margin: -50px 400px;
             position: absolute;
         }
-        .b{
+
+        .b {
             margin: -170px 1100px;
             position: absolute;
-            text-align:center;
-            width:120px;
-            height:25px;
-            border:1px solid #ffffff;
-            outline:none;
-            color:#ffffff;
-            border-radius:10px;
-            background-color:transparent;
+            text-align: center;
+            width: 120px;
+            height: 25px;
+            border: 1px solid #ffffff;
+            outline: none;
+            color: #ffffff;
+            border-radius: 10px;
+            background-color: transparent;
         }
-        .b_chat{
+
+        .b_chat {
             margin: -170px 580px;
             position: absolute;
-            text-align:center;
-            width:120px;
-            height:25px;
-            border:1px solid #ffffff;
-            outline:none;
-            color:#ffffff;
-            border-radius:10px;
-            background-color:transparent;
+            text-align: center;
+            width: 120px;
+            height: 25px;
+            border: 1px solid #ffffff;
+            outline: none;
+            color: #ffffff;
+            border-radius: 10px;
+            background-color: transparent;
         }
-        .b_support{
+
+        .b_support {
             margin: -170px 100px;
             position: absolute;
-            text-align:center;
-            width:120px;
-            height:25px;
-            border:1px solid #ffffff;
-            outline:none;
-            color:#ffffff;
-            border-radius:10px;
-            background-color:transparent;
+            text-align: center;
+            width: 120px;
+            height: 25px;
+            border: 1px solid #ffffff;
+            outline: none;
+            color: #ffffff;
+            border-radius: 10px;
+            background-color: transparent;
         }
-        .label1{
+
+        .label1 {
             margin: -18px 5px;
             position: absolute;
         }
-        .label2{
+
+        .label2 {
             margin: -18px 60px;
             position: absolute;
         }
-        .label3{
+
+        .label3 {
             margin: -18px 25px;
             position: absolute;
         }
@@ -149,18 +165,18 @@
             contentType: 'application/json',
             timeout: 600000,
             success: function (data) {
-                if ( document.getElementById("prod")){
+                if (document.getElementById("prod")) {
                     document.getElementById("prod").remove();
                 }
                 $('#result').append("<div id=\"prod\" class=\"back\"></div>");
                 if (data.length > 0) {
-                    for (var i = data.length-1;i >= 0; i--) {
-                        $('#prod').append("<div class=\"main\">"+
-                        "<div class=\"name\"><h2>"+ data[i].name +"</h2></div>"+
-                        "<div class=\"discription\">"+ data[i].text +"</div>"+
-                        "<div class=\"price\"><h2>"+ data[i].price +" руб </h2></div>"+
-                        "<img class=\"image\" height=\"180px\" width=\"180px\" src=\"/img/"+ data[i].image +"\">"+
-                        "</div>");
+                    for (var i = data.length - 1; i >= 0; i--) {
+                        $('#prod').append("<div class=\"main\">" +
+                            "<div class=\"name\"><h2>" + data[i].name + "</h2></div>" +
+                            "<div class=\"discription\">" + data[i].text + "</div>" +
+                            "<div class=\"price\"><h2>" + data[i].price + " руб </h2></div>" +
+                            "<img class=\"image\" height=\"180px\" width=\"180px\" src=\"/img/" + data[i].image + "\">" +
+                            "</div>");
                     }
                 }
             },
@@ -170,11 +186,12 @@
             }
         });
     }
-    function getFormData($form){
+
+    function getFormData($form) {
         var unindexed_array = $form.serializeArray();
         var indexed_array = {};
 
-        $.map(unindexed_array, function(n, i){
+        $.map(unindexed_array, function (n, i) {
             indexed_array[n['name']] = n['value'];
         });
 

@@ -27,14 +27,14 @@ public class AdminController {
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping
-    public String getMainPage()  {
+    public String getMainPage() {
         return "admin";
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping
     public String addProducts(Product form, @RequestParam("file") MultipartFile file, Model model) throws IOException {
-        model.addAttribute("message",adminService.addProd(form,file));
+        model.addAttribute("message", adminService.addProd(form, file));
         return "admin";
     }
 }

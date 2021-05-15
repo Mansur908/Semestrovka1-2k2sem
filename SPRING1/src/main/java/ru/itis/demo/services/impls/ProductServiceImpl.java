@@ -13,7 +13,7 @@ import java.util.List;
 public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository;
 
-//    @Override
+    //    @Override
 //    public String getProducts() {
 //        return productRepository.findAll().toString();
 //    }
@@ -29,6 +29,6 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void deleteProduct(Long id) {
-       productRepository.deleteById(id);
+        productRepository.deleteById(id);
     }
 }

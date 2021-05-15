@@ -23,16 +23,16 @@ import java.util.List;
 public class MessageController {
     private final MessageService messageService;
 
-    @PreAuthorize("hasAuthority('USER')")
+    @PreAuthorize("isAuthenticated()")
     @GetMapping
-    public String getMessagePage()  {
+    public String getMessagePage() {
         return "message_page";
     }
 
-    @PreAuthorize("hasAuthority('USER')")
+    @PreAuthorize("isAuthenticated()")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public String addMessage(@AuthenticationPrincipal UserDetailsImpl user){
-        return messageService.addUserMessage(user);
+    public String addMessage(@AuthenticationPrincipal UserDetailsImpl user) {
+        return messageService.getUserMessage(user);
     }
 }

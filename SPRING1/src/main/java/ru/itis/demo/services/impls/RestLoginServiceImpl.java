@@ -28,15 +28,15 @@ public class RestLoginServiceImpl implements RestLoginService {
     public TokenDto signIn(RestLoginDto loginDto) throws AccessDeniedException {
         Optional<User> userOptional = userRepository.findByEmail(loginDto.getEmail());
 
-        if (userOptional.isPresent()){
+        if (userOptional.isPresent()) {
             User user = userOptional.get();
-            if (passwordEncoder.matches(loginDto.getPassword(),user.getHashPassword())){
+            if (passwordEncoder.matches(loginDto.getPassword(), user.getHashPassword())) {
                 String token = Jwts.builder()
                         .setSubject(user.getId().toString())
-                        .claim("name",user.getName())
-                        .claim("email",user.getEmail())
-                        .claim("role",user.getRole().toString())
-                        .signWith(SignatureAlgorithm.HS256,secret)
+                        .claim("name", user.getName())
+                        .claim("email", user.getEmail())
+                        .claim("role", user.getRole().toString())
+                        .signWith(SignatureAlgorithm.HS256, secret)
                         .compact();
                 return new TokenDto(token);
             } else throw new AccessDeniedException("wrong email/password");

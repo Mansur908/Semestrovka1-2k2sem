@@ -11,7 +11,7 @@ import java.util.Map;
 @Service
 public class TemplateProcessorImpl implements TemplateProcessor {
     private TemplateResolver templateResolver;
-    private Map<String,String> template;
+    private Map<String, String> template;
 
     public TemplateProcessorImpl(TemplateResolver templateResolver, @Qualifier(value = "templateParameters") Map<String, String> templateParameters) {
         this.templateResolver = templateResolver;

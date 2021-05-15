@@ -10,6 +10,6 @@ import java.util.Optional;
 
 public interface SupportRepositiry extends JpaRepository<Support, Long> {
 
-    @Query(nativeQuery = true,value = "SELECT * FROM support WHERE to_user = :id OR user_id = :id")
+    @Query(nativeQuery = true, value = "SELECT * FROM support WHERE to_user = :id OR user_id = :id")
     List<Support> findAllMessages(Long id);
 }

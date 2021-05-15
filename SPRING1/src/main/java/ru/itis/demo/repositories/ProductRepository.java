@@ -18,10 +18,10 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     @Query("select p from Product p where lower(p.type) like lower(concat('%', :nameToFind,'%')) ")
     Page<Product> findAll(@Param("nameToFind") String username,
-                                           Pageable pageable);
+                          Pageable pageable);
 
-    @Query(nativeQuery = true,value = "UPDATE account SET image = :imageName where id = :id returning 1")
-    void addImageName(Long id,String imageName);
+    @Query(nativeQuery = true, value = "UPDATE account SET image = :imageName where id = :id returning 1")
+    void addImageName(Long id, String imageName);
 
     void deleteById(Long id);
 

@@ -65,7 +65,7 @@ public class SmsSenderImpl implements SmsSender {
         String[] result = text.split(" ");
         StringBuilder sb = new StringBuilder();
         sb.append(result[0]);
-        for (int i = 1; i < result.length ; i++) {
+        for (int i = 1; i < result.length; i++) {
             sb.append("+").append(result[i]);
         }
         return sb.toString();

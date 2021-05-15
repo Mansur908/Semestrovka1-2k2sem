@@ -47,8 +47,7 @@ public class Support {
                     "\", \"isAdmin\":\"" + isAdmin +
                     "\", \"to_user\":\"" + to_user.getName() +
                     "\"}";
-        }
-        else {
+        } else {
             return "{" +
                     "\"id\":\"" + id +
                     "\", \"user\":\"" + user.getName() +
@@ -58,5 +57,5 @@ public class Support {
                     "\", \"to_user\":\"" + to_user +
                     "\"}";
         }
-        }
+    }
 }

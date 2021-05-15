@@ -10,9 +10,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TokenDto {
-//    private Long id;
-//    private String email;
-//    private String name;
-//    private String role;
     String token;
 }

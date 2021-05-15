@@ -30,7 +30,7 @@ public class SignUpController {
     @PermitAll
     @GetMapping("/signup")
     public String getSignUpPage(Model model) {
-        model.addAttribute("userForm",new UserForm());
+        model.addAttribute("userForm", new UserForm());
         return "sign_up_page";
     }
 
@@ -51,9 +51,8 @@ public class SignUpController {
                 model.addAttribute("message", str);
                 return "sign_up_page";
             }
-        }
-        else {
-            model.addAttribute("userForm",form);
+        } else {
+            model.addAttribute("userForm", form);
             return "sign_up_page";
         }
     }

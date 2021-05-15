@@ -1,17 +1,17 @@
 <!doctype html>
 <html lang="en">
 <style>
-    .mainPage{
-        margin:20px 1100px;
+    .mainPage {
+        margin: 20px 1100px;
         position: absolute;
-        text-align:center;
-        width:120px;
-        height:25px;
-        border:1px solid #ffffff;
-        outline:none;
-        color:#ffffff;
-        border-radius:10px;
-        background-color:transparent;
+        text-align: center;
+        width: 120px;
+        height: 25px;
+        border: 1px solid #ffffff;
+        outline: none;
+        color: #ffffff;
+        border-radius: 10px;
+        background-color: transparent;
     }
 </style>
 <head>

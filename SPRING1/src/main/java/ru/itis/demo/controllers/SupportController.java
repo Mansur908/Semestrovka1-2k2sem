@@ -13,7 +13,7 @@ public class SupportController {
     @PreAuthorize("hasAuthority('USER')")
     @GetMapping("/support")
     public String getIndexPage(@AuthenticationPrincipal UserDetailsImpl user, Model model) {
-        model.addAttribute("userid", user.getId() );
+        model.addAttribute("userid", user.getId());
         return "support";
     }
 }

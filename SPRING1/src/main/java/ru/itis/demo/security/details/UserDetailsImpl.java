@@ -37,21 +37,20 @@ public class UserDetailsImpl implements UserDetails {
         return user.getImage();
     }
 
-    public String getRole(){
+    public String getRole() {
         return user.getRole().toString();
     }
 
-    public String getState(){
+    public String getState() {
         return user.getState().toString();
     }
 
-    public void setRole(String role){
+    public void setRole(String role) {
         if (role.equals("User"))
             user.setRole(User.Role.USER);
         else
             user.setRole(User.Role.ADMIN);
     }
-
 
     @Override
     public String getPassword() {

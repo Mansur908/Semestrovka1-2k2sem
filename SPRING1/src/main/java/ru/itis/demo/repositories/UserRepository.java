@@ -13,12 +13,12 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findByEmail(String email);
 
-    boolean existsByEmail (String email);
+    boolean existsByEmail(String email);
 
-    boolean existsById (Long id);
+    boolean existsById(Long id);
 
-    @Query(nativeQuery = true,value = "UPDATE account SET image = :imageName where id = :id returning 1")
-    void addImageNameByUserId(Long id,String imageName);
+    @Query(nativeQuery = true, value = "UPDATE account SET image = :imageName where id = :id returning 1")
+    void addImageNameByUserId(Long id, String imageName);
 
     @Query("select u from User u where lower(u.name) like lower(concat('%', :nameToFind,'%')) ")
     Page<User> findAllByUsernameIgnoreCase(@Param("nameToFind") String username,

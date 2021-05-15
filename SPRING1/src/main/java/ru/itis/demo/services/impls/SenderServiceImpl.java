@@ -19,6 +19,7 @@ public class SenderServiceImpl implements SenderService {
 
     @Value("${spring.mail.username}")
     private String senderName;
+
     @Override
     public void sendMessage(String subject, String mail, String html) {
         Runnable runnable = () -> {

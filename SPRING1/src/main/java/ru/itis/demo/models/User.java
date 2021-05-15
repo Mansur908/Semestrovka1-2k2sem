@@ -59,7 +59,7 @@ public class User {
         return this.role == Role.ADMIN;
     }
 
-    public boolean isProved(){
+    public boolean isProved() {
         return this.proved;
     }
 

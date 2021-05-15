@@ -1,17 +1,17 @@
 <!doctype html>
 <html lang="en">
 <style>
-    .b{
+    .b {
         margin: 10px 1100px;
         position: absolute;
-        text-align:center;
-        width:120px;
-        height:25px;
-        border:1px solid #ffffff;
-        outline:none;
-        color:#ffffff;
-        border-radius:10px;
-        background-color:transparent;
+        text-align: center;
+        width: 120px;
+        height: 25px;
+        border: 1px solid #ffffff;
+        outline: none;
+        color: #ffffff;
+        border-radius: 10px;
+        background-color: transparent;
     }
 </style>
 <head>
@@ -28,36 +28,33 @@
         let webSocket;
 
 
-
         function connect() {
             webSocket = new WebSocket('ws://localhost:8080/chat');
-            setTimeout(t,300);
-            // document.cookie = 'AUTH=' + '1234' + ';path=/';
-            //
+            setTimeout(t, 300);
             webSocket.onmessage = function receiveMessage(response) {
                 var json = JSON.parse(response['data']);
-                if ( document.getElementById("del")){
+                if (document.getElementById("del")) {
                     document.getElementById("del").remove();
                 }
                 $('#messagesList').append("<div id=\"del\"></div>");
-                for (i = json.length-1; i >= 0; --i) {
+                for (i = json.length - 1; i >= 0; --i) {
                     if (json[i].isAdmin === "true") {
                         $('#del').append("<li>" + "Admin:" + json[i].text + "</li>");
-                    }
-                    else {
+                    } else {
                         $('#del').append("<li>" + "You:" + json[i].text + "</li>");
                     }
                 }
             }
         }
-        function t(){
-            webSocket.send(JSON.stringify({"text" : "/connected","user_id" : ${userid}}));
+
+        function t() {
+            webSocket.send(JSON.stringify({"text": "/connected", "user_id": ${userid}}));
         }
 
         function sendMessage(text) {
             let message = {
-                "text" : text,
-                "user_id" : ${userid}
+                "text": text,
+                "user_id": ${userid}
             };
 
             webSocket.send(JSON.stringify(message));
@@ -71,7 +68,7 @@
 </a>
 <div>
     <label for="message">Текст сообщения</label>
-    <input name="message" id="message" placeholder="Сообщение" >
+    <input name="message" id="message" placeholder="Сообщение">
     <button onclick="sendMessage($('#message').val())">Отправить</button>
     <h3>Сообщения</h3>
     <ul id="messagesList">

@@ -34,8 +34,8 @@
     </tr>
     <tr>
         <td bgcolor="#777777" style="padding: 30px 30px 30px 30px;">
-<#--            <p>${signature}</p>-->
-<#--            <p>${location}</p>-->
+            <#--            <p>${signature}</p>-->
+            <#--            <p>${location}</p>-->
             <p><a href=${link}>Подвердить регистрацию </a></p>
         </td>
     </tr>

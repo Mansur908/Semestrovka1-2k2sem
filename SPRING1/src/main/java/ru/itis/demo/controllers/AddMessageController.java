@@ -20,8 +20,8 @@ public class AddMessageController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public void  getUsersBySearchForm(@AuthenticationPrincipal UserDetailsImpl user,@RequestBody MessageForm messageForm) {
-        messageService.addMessage(user,messageForm);
+    public void getUsersBySearchForm(@AuthenticationPrincipal UserDetailsImpl user, @RequestBody MessageForm messageForm) {
+        messageService.addMessage(user, messageForm);
     }
 
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)

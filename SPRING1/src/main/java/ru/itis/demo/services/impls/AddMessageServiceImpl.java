@@ -18,6 +18,6 @@ public class AddMessageServiceImpl implements AddMessageService {
     @Override
     public void addMessage(UserDetailsImpl user, MessageForm messageForm) {
         User user1 = userRepository.findByEmail(user.getUsername()).get();
-        messageService.addMessage(user1,messageForm.getText());
+        messageService.addMessage(user1, messageForm.getText());
     }
 }
