@@ -31,9 +31,12 @@ public class Product {
 
     private String image;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "userId")
-//    private User user;
+    @ManyToMany
+    @JoinTable(name = "favorites",
+            joinColumns = {@JoinColumn(name = "product_id")},
+            inverseJoinColumns = {@JoinColumn(name = "user_id")})
+    private List<User> users;
+
 
     public static Product from(Product product) {
         return Product.builder()

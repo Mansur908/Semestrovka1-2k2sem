@@ -109,13 +109,17 @@
         <#if message?has_content>
             <p class="message"><font color="red"><b>${message}</b></font></p>
         </#if>
-        <input type="text" name="name" minlength="1"
-               placeholder=<@spring.message 'sign_up_page.name.placeholder'/> class="name" required/>
+        <@spring.formInput "userForm.name" "class=\"name\" placeholder=name required" />
+        <@spring.showErrors "<br>" "error"  />
+<#--        <input type="text" name="name" minlength="1"-->
+<#--               placeholder=<@spring.message 'sign_up_page.name.placeholder'/> class="name" required/>-->
         <@spring.formInput "userForm.email" "class=\"email\" placeholder=email required" />
         <@spring.showErrors "<br>" "error"  />
         <#--        <input type="email" name="email" minlength="1" placeholder=<@spring.message 'sign_up_page.email.placeholder'/> class="email"/>-->
-        <input type="password" name="password" minlength="7"
-               placeholder=<@spring.message 'sign_up_page.password.placeholder'/> class="password" required/>
+        <@spring.formInput "userForm.password" "class=\"password\" placeholder=password required" />
+        <@spring.showErrors "<br>" "error"  />
+<#--        <input type="password" name="password" minlength="7"-->
+<#--               placeholder=<@spring.message 'sign_up_page.password.placeholder'/> class="password" required/>-->
         <input type="submit" value=<@spring.message 'sign_up_page.enter'/> class="enter"/>
     </form>
 </div>

@@ -102,7 +102,7 @@
         }
 
         .b_chat {
-            margin: -170px 580px;
+            margin: -170px 430px;
             position: absolute;
             text-align: center;
             width: 120px;
@@ -113,7 +113,18 @@
             border-radius: 10px;
             background-color: transparent;
         }
-
+        .b_favorites {
+            margin: -170px 750px;
+            position: absolute;
+            text-align: center;
+            width: 120px;
+            height: 25px;
+            border: 1px solid #ffffff;
+            outline: none;
+            color: #ffffff;
+            border-radius: 10px;
+            background-color: transparent;
+        }
         .b_support {
             margin: -170px 100px;
             position: absolute;
@@ -140,6 +151,15 @@
         .label3 {
             margin: -18px 25px;
             position: absolute;
+        }
+        .favorites{
+            margin: -190px 550px;
+            position: absolute;
+            border: 1px solid #ffffff;
+            outline: none;
+            color: red;
+            border-radius: 5px;
+            background-color: transparent;
         }
     </style>
 </head>
@@ -176,6 +196,11 @@
                             "<div class=\"discription\">" + data[i].text + "</div>" +
                             "<div class=\"price\"><h2>" + data[i].price + " руб </h2></div>" +
                             "<img class=\"image\" height=\"180px\" width=\"180px\" src=\"/img/" + data[i].image + "\">" +
+                            "<form action=\"/favorites\" method='post'>"+
+                            "<input type=\"hidden\" name=\"${_csrf.parameterName}\" value=\"${_csrf.token}\">"+
+                            "<input type=\"hidden\" name=\"productId\" value=\""+ data[i].id +"\"/>"+
+                            "<input class=\"favorites\" type=\"submit\" value=\"&#10084\"/>"+
+                            "</form>" +
                             "</div>");
                     }
                 }
@@ -207,6 +232,9 @@
 <a href="http://localhost:8080/message">
     <button type="button" class="b_chat">chat</button>
 </a>
+<a href="http://localhost:8080/favorites">
+    <button type="button" class="b_favorites">favorites</button>
+</a>
 <form class="form" id="searchForm" action="/products">
     <label class="label1">Категория</label>
     <select id="name" name="name">
@@ -220,6 +248,7 @@
     <label class="label3">Размер страницы</label>
     <input type="number" value="5" name="size" id="size" placeholder="Введите размер страницы"/>
     <button type="button" id="but1" onclick="search()"> Поиск</button>
+
 </form>
 <div id="result">
 

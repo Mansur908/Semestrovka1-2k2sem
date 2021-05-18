@@ -59,17 +59,12 @@
             } else {
                 webSocket.send(JSON.stringify({
                     "text": "/connected",
-                    "user_id": ${userid},
-                    "to_user": $('#to_user').val()
+                    "userId": ${userid},
+                    "toUser": $('#to_user').val()
                 }));
             }
         }
 
-        // function sendMessage(text, pageId) {
-        //     let message = {
-        //         "text" : text,
-        //         "from": pageId
-        //     };
         function sendMessage(text) {
             if ($('#to_user').val().length < 1) {
                 if (document.getElementById("del")) {
@@ -80,8 +75,8 @@
             } else {
                 let message = {
                     "text": text,
-                    "user_id": ${userid},
-                    "to_user": $('#to_user').val()
+                    "userId": ${userid},
+                    "toUser": $('#to_user').val()
                 };
 
                 webSocket.send(JSON.stringify(message));

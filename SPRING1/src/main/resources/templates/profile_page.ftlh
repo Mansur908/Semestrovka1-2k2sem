@@ -132,7 +132,7 @@
                             <label class="label">
                                 <i class="material-icons">attach</i>
                                 <span class="title">Добавить фото</span>
-                                <input type="file" name="file">
+                                <input type="file" name="file" required>
                             </label>
                         </div>
                     </div>

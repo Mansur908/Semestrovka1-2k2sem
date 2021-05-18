@@ -69,7 +69,7 @@
     <#if message??>
         <h3 class="mes">${message}</h3>
     </#if>
-    <form action="/admindel" method="post">
+    <form action="/admin/delete" method="post">
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         <input class="e1" required type="text" name="id" placeholder="Id товара"/>
         <input class="sub" type="submit" value="DELETE"/>

@@ -5,7 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.management.relation.Role;
 import javax.persistence.*;
 import java.util.List;
 
@@ -38,6 +37,12 @@ public class User {
 
     @Enumerated(value = EnumType.STRING)
     private Role role;
+
+    @ManyToMany
+    @JoinTable(name = "favorites",
+            joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "product_id")})
+    private List<Product> products;
 
     public enum State {
         ACTIVE, BANNED

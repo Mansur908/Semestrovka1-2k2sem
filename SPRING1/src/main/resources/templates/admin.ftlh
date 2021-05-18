@@ -103,13 +103,13 @@
     </style>
 </head>
 <body bgcolor="darkkhaki">
-<a href="http://localhost:8080/admindel">
+<a href="http://localhost:8080/admin/delete">
     <button type="button" class="mainPage">Delete product</button>
 </a>
-<a href="http://localhost:8080/adminmes">
+<a href="http://localhost:8080/admin/support">
     <button type="button" class="mainPage1">Admin support</button>
 </a>
-<a href="http://localhost:8080/sendSms">
+<a href="http://localhost:8080/sms">
     <button type="button" class="mainPage3">Send Sms</button>
 </a>
 <div class="d">

@@ -13,7 +13,7 @@ import ru.itis.demo.services.intrfases.AddMessageService;
 
 
 @Controller
-@RequestMapping("/addMess")
+@RequestMapping("/message/add")
 @RequiredArgsConstructor
 public class AddMessageController {
     private final AddMessageService messageService;

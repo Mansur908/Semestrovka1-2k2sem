@@ -6,4 +6,6 @@ import ru.itis.demo.dto.UserForm;
 
 public interface SignUpService {
     String signUp(UserForm form);
+
+    String sendMail(UserForm form);
 }

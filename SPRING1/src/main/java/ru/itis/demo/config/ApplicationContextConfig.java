@@ -25,8 +25,17 @@ import java.util.concurrent.Executors;
 public class ApplicationContextConfig implements WebMvcConfigurer {
     private final Environment environment;
 
-    @Value("${upload.path1}")
+    @Value("${show.image.path}")
     private String uploadPath;
+
+    @Value("${spring.mail.password}")
+    private String mailPassword;
+
+    @Value("${spring.mail.username}")
+    private String mailAddress;
+
+    @Value("${spring.mail.host}")
+    private String mailHost;
 
     @Bean
     public ExecutorService executorService() {
@@ -51,15 +60,15 @@ public class ApplicationContextConfig implements WebMvcConfigurer {
     @Primary
     public JavaMailSender getJavaMailSender() {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
-        mailSender.setHost("smtp.gmail.com");
+        mailSender.setHost(mailHost);
         mailSender.setPort(587);
 
-        mailSender.setUsername("alex19ey@gmail.com");
-        mailSender.setPassword("mansur1213");
+        mailSender.setUsername(mailAddress);
+        mailSender.setPassword(mailPassword);
 
         Properties props = mailSender.getJavaMailProperties();
         props.put("mail.transport.protocol", "smtp");
-        props.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+        props.put("mail.smtp.ssl.trust", mailHost);
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true");
         props.put("mail.debug", "true");

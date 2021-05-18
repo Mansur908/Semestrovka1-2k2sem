@@ -13,10 +13,6 @@ import java.util.List;
 public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository;
 
-    //    @Override
-//    public String getProducts() {
-//        return productRepository.findAll().toString();
-//    }
     @Override
     public List<Product> getProducts() {
         return productRepository.findAll();

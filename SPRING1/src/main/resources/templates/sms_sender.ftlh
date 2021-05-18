@@ -25,7 +25,7 @@
 <a href="http://localhost:8080/admin">
     <button type="button" class="mainPage">Add product</button>
 </a>
-<form action="/sendSms" method="post">
+<form action="/sms" method="post">
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
     <input type="text" name="number" placeholder="телефон">
     <input type="text" name="text" placeholder="текст">

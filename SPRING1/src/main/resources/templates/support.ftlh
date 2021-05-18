@@ -48,13 +48,13 @@
         }
 
         function t() {
-            webSocket.send(JSON.stringify({"text": "/connected", "user_id": ${userid}}));
+            webSocket.send(JSON.stringify({"text": "/connected", "userId": ${userid}}));
         }
 
         function sendMessage(text) {
             let message = {
                 "text": text,
-                "user_id": ${userid}
+                "userId": ${userid}
             };
 
             webSocket.send(JSON.stringify(message));

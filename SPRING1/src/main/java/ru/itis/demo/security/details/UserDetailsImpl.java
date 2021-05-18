@@ -6,7 +6,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import ru.itis.demo.models.User;
 
-import javax.management.relation.Role;
 import java.util.Collection;
 import java.util.Collections;
 
@@ -69,7 +68,7 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public boolean isAccountNonLocked() {
-        return user.isActive() && user.isProved();
+        return user.isActive();
     }
 
     @Override

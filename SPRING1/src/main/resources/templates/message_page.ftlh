@@ -196,7 +196,7 @@
 
         $.ajax({
             type: "POST",
-            url: "/addMess",
+            url: "/message/add",
             beforeSend: function (request) {
                 request.setRequestHeader(header, token);
             },

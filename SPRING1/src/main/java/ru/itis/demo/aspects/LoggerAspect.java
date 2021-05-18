@@ -9,10 +9,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
+
 
 @Aspect
 @Component
-public class MyAspect {
+public class LoggerAspect {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -22,11 +24,11 @@ public class MyAspect {
 
     @Before("callAtMyServicePublic()")
     public void beforeCallAtMethod1(JoinPoint jp) {
-        logger.info("Before - " + jp.getSignature() + "; time - " + System.currentTimeMillis());
+        logger.info("Before - " + jp.getSignature()+ "; Args - " + Arrays.toString(jp.getArgs()) +"; time - " + System.currentTimeMillis());
     }
 
     @After("callAtMyServicePublic()")
     public void afterCallAt(JoinPoint jp) {
-        logger.info("After - " + jp.getSignature() + "; time - " + System.currentTimeMillis());
+        logger.info("After - " + jp.getSignature()+ "; Args - " + Arrays.toString(jp.getArgs()) + "; time - " + System.currentTimeMillis());
     }
 }

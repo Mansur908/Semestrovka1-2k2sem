@@ -10,9 +10,12 @@ import ru.itis.demo.security.details.UserDetailsImpl;
 @Controller
 public class SupportController {
 
-    @PreAuthorize("hasAuthority('USER')")
+    @PreAuthorize("isAuthenticated()")
     @GetMapping("/support")
     public String getIndexPage(@AuthenticationPrincipal UserDetailsImpl user, Model model) {
+        if (user.getRole().equals("ADMIN")){
+            return "redirect:/products";
+        }
         model.addAttribute("userid", user.getId());
         return "support";
     }

@@ -11,7 +11,7 @@ import ru.itis.demo.security.details.UserDetailsImpl;
 public class AdminMessageController {
 
     @PreAuthorize("hasAuthority('ADMIN')")
-    @GetMapping("/adminmes")
+    @GetMapping("/admin/support")
     public String getIndexPage(@AuthenticationPrincipal UserDetailsImpl user, Model model) {
         model.addAttribute("userid", user.getId());
         return "admin_message";
