@@ -20,4 +20,3 @@ public class SupportController {
         return "support";
     }
 }
-

@@ -13,7 +13,6 @@ import ru.itis.demo.repositories.UserRepository;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-
 @Component
 @RequiredArgsConstructor
 public class WebSocketMessagesHandler extends TextWebSocketHandler {

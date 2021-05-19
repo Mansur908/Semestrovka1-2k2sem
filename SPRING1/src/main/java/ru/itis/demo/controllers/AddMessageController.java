@@ -11,7 +11,6 @@ import ru.itis.demo.dto.MessageForm;
 import ru.itis.demo.security.details.UserDetailsImpl;
 import ru.itis.demo.services.intrfases.AddMessageService;
 
-
 @Controller
 @RequestMapping("/message/add")
 @RequiredArgsConstructor

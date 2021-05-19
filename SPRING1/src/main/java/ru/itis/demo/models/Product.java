@@ -37,7 +37,6 @@ public class Product {
             inverseJoinColumns = {@JoinColumn(name = "user_id")})
     private List<User> users;
 
-
     public static Product from(Product product) {
         return Product.builder()
                 .id(product.getId())
@@ -46,7 +45,6 @@ public class Product {
                 .text(product.getText())
                 .price(product.getPrice())
                 .image(product.getImage())
-//                .user(product.getUser())
                 .build();
     }
 
@@ -66,7 +64,6 @@ public class Product {
                 "\", \"price\":\"" + price +
                 "\", \"image\":\"" + image +
                 "\"" +
-//                "\", \"user\":" + user.toJson() +
                 "}";
     }
 }

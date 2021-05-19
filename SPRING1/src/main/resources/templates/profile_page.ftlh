@@ -141,6 +141,17 @@
             </div>
         </form>
         <h2 class="prof_head">${message}</h2>
+        <form style="margin: 400px 330px"  method="post" action="/subscription">
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+            <#if subscription>
+                <input type="hidden" name="subscription" value=false>
+                <input type="submit" value="Отписаться от рассылки">
+            <#else>
+                <input type="hidden" name="subscription" value=true>
+                <input type="submit" value="Подписаться на рассылку">
+            </#if>
+        </form>
+
     </div>
 </div>
 </body>

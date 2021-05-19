@@ -5,7 +5,6 @@ import lombok.Data;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
 
-
 @Data
 public class UserForm {
     @Email(message = "{errors.incorrect.email}")

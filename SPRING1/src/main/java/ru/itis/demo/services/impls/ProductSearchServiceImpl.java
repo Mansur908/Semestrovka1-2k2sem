@@ -6,11 +6,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import ru.itis.demo.dto.SearchForm;
-import ru.itis.demo.dto.UserDto;
 import ru.itis.demo.models.Product;
-import ru.itis.demo.models.User;
 import ru.itis.demo.repositories.ProductRepository;
-import ru.itis.demo.repositories.UserRepository;
 import ru.itis.demo.services.intrfases.ProductSearchService;
 
 @Service

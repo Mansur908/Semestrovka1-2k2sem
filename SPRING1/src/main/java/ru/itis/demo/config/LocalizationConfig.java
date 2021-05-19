@@ -57,5 +57,4 @@ public class LocalizationConfig implements WebMvcConfigurer {
         messageSource.setDefaultEncoding("UTF-8");
         return messageSource;
     }
-
 }

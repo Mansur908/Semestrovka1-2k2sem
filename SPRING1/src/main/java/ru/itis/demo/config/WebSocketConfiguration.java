@@ -19,4 +19,3 @@ public class WebSocketConfiguration implements WebSocketConfigurer {
         webSocketHandlerRegistry.addHandler(messagesHandler, "/chat");
     }
 }
-

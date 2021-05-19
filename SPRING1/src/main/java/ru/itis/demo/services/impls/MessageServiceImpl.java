@@ -20,7 +20,6 @@ public class MessageServiceImpl implements MessageService {
     private final MessageRepository messageRepository;
     private final UserRepository userRepository;
 
-
     @Override
     public void addMessage(User user, String text) {
         Message message = new Message();
@@ -46,5 +45,4 @@ public class MessageServiceImpl implements MessageService {
         }
         return messages.toString();
     }
-
 }

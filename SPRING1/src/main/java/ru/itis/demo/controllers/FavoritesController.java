@@ -15,7 +15,6 @@ import ru.itis.demo.services.intrfases.FavoritesService;
 
 import java.util.List;
 
-
 @Controller
 @RequestMapping("/favorites")
 @RequiredArgsConstructor
@@ -31,7 +30,6 @@ public class FavoritesController {
         }
         return "favorites";
     }
-
 
     @PreAuthorize("isAuthenticated()")
     @PostMapping

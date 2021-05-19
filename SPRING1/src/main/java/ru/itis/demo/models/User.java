@@ -30,6 +30,9 @@ public class User {
     private String currentConfirmationCode;
 
     @Column(columnDefinition = "boolean default false")
+    private boolean productSubscription;
+
+    @Column(columnDefinition = "boolean default false")
     private boolean proved;
 
     @Enumerated(value = EnumType.STRING)
@@ -68,16 +71,8 @@ public class User {
         return this.proved;
     }
 
-    public String toJson() {
-        return "{" +
-                "\"id\":\"" + id +
-                "\", \"name\":\"" + name +
-                "\", \"email\":\"" + email +
-                "\", \"hashPassword\":\"" + hashPassword +
-                "\", \"image\":\"" + image +
-                "\", \"state\":\"" + state +
-                "\", \"role\":\"" + role +
-                "\"}";
+    public boolean isSubscriber() {
+        return this.productSubscription;
     }
 
     @Override

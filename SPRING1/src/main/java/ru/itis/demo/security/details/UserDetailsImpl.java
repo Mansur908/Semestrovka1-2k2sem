@@ -44,6 +44,10 @@ public class UserDetailsImpl implements UserDetails {
         return user.getState().toString();
     }
 
+    public boolean getSubscription() {
+        return user.isSubscriber();
+    }
+
     public void setRole(String role) {
         if (role.equals("User"))
             user.setRole(User.Role.USER);

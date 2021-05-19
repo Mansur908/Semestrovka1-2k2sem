@@ -35,7 +35,6 @@ public class Support {
     @JoinColumn(name = "to_user")
     private User to_user;
 
-
     @Override
     public String toString() {
         if (to_user != null) {

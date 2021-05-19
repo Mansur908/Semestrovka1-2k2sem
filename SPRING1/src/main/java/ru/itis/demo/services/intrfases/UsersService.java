@@ -13,6 +13,8 @@ public interface UsersService {
 
     void banAll();
 
+    void changeSubscription(Long id,boolean subs);
+
     User getUser(String email);
 
     String addImage(UserDetailsImpl user, MultipartFile file) throws IOException;

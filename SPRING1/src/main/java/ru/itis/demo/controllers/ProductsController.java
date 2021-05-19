@@ -1,6 +1,5 @@
 package ru.itis.demo.controllers;
 
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.MediaType;
@@ -9,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import ru.itis.demo.dto.SearchForm;
 import ru.itis.demo.models.Product;
 import ru.itis.demo.services.intrfases.ProductSearchService;
-
 
 @Controller
 @RequestMapping("/products")

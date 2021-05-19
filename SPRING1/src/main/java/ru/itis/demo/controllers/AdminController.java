@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import ru.itis.demo.models.Product;
 import ru.itis.demo.services.intrfases.AdminService;
+import ru.itis.demo.services.intrfases.MailService;
+
 import java.io.IOException;
 
 @Controller
@@ -18,6 +20,7 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class AdminController {
     private final AdminService adminService;
+    private final MailService mailService;
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping
@@ -29,6 +32,7 @@ public class AdminController {
     @PostMapping
     public String addProducts(Product form, @RequestParam("file") MultipartFile file, Model model) throws IOException {
         model.addAttribute("message", adminService.addProd(form, file));
+        mailService.sendProductMail();
         return "admin";
     }
 }

@@ -7,7 +7,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.itis.demo.dto.DeleteProductForm;
 import ru.itis.demo.services.intrfases.ProductService;
-import java.io.IOException;
 
 @Controller
 @RequiredArgsConstructor
@@ -20,7 +19,6 @@ public class AdminDeleteController {
         model.addAttribute("json", productService.getProducts().toString());
         return "admin_delete";
     }
-
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/admin/delete")

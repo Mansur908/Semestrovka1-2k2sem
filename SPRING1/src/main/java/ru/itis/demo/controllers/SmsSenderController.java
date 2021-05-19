@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 import ru.itis.demo.dto.SmsSenderForm;
 import ru.itis.demo.services.intrfases.SmsSender;
 
-
 @Controller
 @RequiredArgsConstructor
 public class SmsSenderController {
@@ -25,5 +24,4 @@ public class SmsSenderController {
     public String sendSmsMessage(SmsSenderForm form) {
         return smsSender.sendSms(form.getNumber(), form.getText());
     }
-
 }

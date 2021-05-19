@@ -4,6 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import ru.itis.demo.dto.UserDto;
+import ru.itis.demo.models.User;
+import ru.itis.demo.repositories.UserRepository;
 import ru.itis.demo.services.intrfases.MailService;
 import ru.itis.demo.services.intrfases.SenderService;
 import ru.itis.demo.services.intrfases.TemplateProcessor;
@@ -16,6 +18,7 @@ import java.util.Map;
 public class MailServiceImpl implements MailService {
     private final TemplateProcessor templateProcessor;
     private final SenderService senderService;
+    private final UserRepository userRepository;
 
     @Value("${server.basic.address}")
     private String serverBasicAddress;
@@ -28,10 +31,15 @@ public class MailServiceImpl implements MailService {
         sendMail(parameters, "mail.ftlh", userDto.getEmail(), "Confirm your registration");
     }
 
+    @Override
+    public void sendProductMail() {
+        for (User user : userRepository.findAllByProductSubscriptionIsTrue()) {
+            senderService.sendMessage("Оповещение", user.getEmail(), "У нас появился новый товар");
+        }
+    }
 
     private void sendMail(Map<String, String> parameters, String template, String email, String subject) {
         String html = templateProcessor.getProcessedTemplate(parameters, template);
         senderService.sendMessage(subject, email, html);
     }
-
 }

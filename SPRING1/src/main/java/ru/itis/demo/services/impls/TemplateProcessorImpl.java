@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import ru.itis.demo.services.intrfases.TemplateProcessor;
 import ru.itis.demo.services.intrfases.TemplateResolver;
 
-
 import java.util.Map;
 
 @Service

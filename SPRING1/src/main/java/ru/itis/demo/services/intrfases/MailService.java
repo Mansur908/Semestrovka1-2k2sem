@@ -5,4 +5,6 @@ import ru.itis.demo.dto.UserDto;
 
 public interface MailService {
     void sendMail(UserDto userDto);
+
+    void sendProductMail();
 }

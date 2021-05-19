@@ -1,7 +1,6 @@
 package ru.itis.demo.services.impls;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
@@ -40,6 +39,11 @@ class UsersServiceImpl implements UsersService {
                 userRepository.save(user);
             }
         }
+    }
+
+    @Override
+    public void changeSubscription(Long id, boolean subs) {
+        userRepository.setSubscription(id,subs);
     }
 
     @Override

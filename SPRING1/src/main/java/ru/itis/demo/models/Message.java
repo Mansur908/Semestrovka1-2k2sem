@@ -29,7 +29,6 @@ public class Message {
 
     private boolean equalCookie;
 
-
     public String toJson() {
         return "{" +
                 "\"id\":\"" + id +
