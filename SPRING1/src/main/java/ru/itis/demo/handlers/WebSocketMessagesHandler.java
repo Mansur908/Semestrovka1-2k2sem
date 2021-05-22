@@ -10,8 +10,12 @@ import ru.itis.demo.dto.SupportForm;
 import ru.itis.demo.models.Support;
 import ru.itis.demo.repositories.SupportRepositiry;
 import ru.itis.demo.repositories.UserRepository;
+
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
+import java.util.Map;
 
 @Component
 @RequiredArgsConstructor
@@ -20,9 +24,24 @@ public class WebSocketMessagesHandler extends TextWebSocketHandler {
     private final SupportRepositiry supportRepositiry;
     private final UserRepository userRepository;
 
+    private static final Map<Long,WebSocketSession> sessions = new HashMap<>();
+    
+    public void send(Long toUser,TextMessage message) throws IOException {
+        if (sessions.containsKey(toUser)){
+            sessions.get(toUser).sendMessage(message);
+        }
+    }
+
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
         SupportForm message1 = objectMapper.readValue(message.getPayload(), SupportForm.class);
+
+        if (!sessions.containsKey(message1.getUserId())){
+            sessions.put(message1.getUserId(),session);
+        }
+
+
+
         if (message1.getText().equals("/connected") && message1.getToUser() != null) {
             String mes = supportRepositiry.findAllMessages(message1.getToUser()).toString();
             TextMessage m = new TextMessage(mes);
@@ -42,7 +61,8 @@ public class WebSocketMessagesHandler extends TextWebSocketHandler {
             supportRepositiry.save(support);
             String mes = supportRepositiry.findAllMessages(message1.getUserId()).toString();
             TextMessage m = new TextMessage(mes);
-            session.sendMessage(m);
+            send(6L,m);
+            send(message1.getUserId(),m);
         }
         if (!message1.getText().equals("/connected") && message1.getToUser() != null) {
             if (!userRepository.existsById(message1.getToUser())) {
@@ -60,7 +80,8 @@ public class WebSocketMessagesHandler extends TextWebSocketHandler {
                 supportRepositiry.save(support);
                 String mes = supportRepositiry.findAllMessages(message1.getToUser()).toString();
                 TextMessage m = new TextMessage(mes);
-                session.sendMessage(m);
+                send(message1.getToUser(),m);
+                send(message1.getUserId(),m);
             }
         }
     }

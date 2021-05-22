@@ -22,9 +22,4 @@ public class AddMessageController {
     public void getUsersBySearchForm(@AuthenticationPrincipal UserDetailsImpl user, @RequestBody MessageForm messageForm) {
         messageService.addMessage(user, messageForm);
     }
-
-    @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
-    public String handleException() {
-        return "Exception";
-    }
 }
