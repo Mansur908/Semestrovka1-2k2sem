@@ -1,4 +1,4 @@
-package ru.itis.demo.security.details;
+package ru.itis.demo.details;
 
 import lombok.Builder;
 import org.springframework.security.core.GrantedAuthority;

@@ -1,6 +1,7 @@
 package ru.itis.demo.controllers;
 
 
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,7 @@ import ru.itis.demo.services.intrfases.ProductSearchService;
 public class ProductsController {
     private final ProductSearchService productSearchService;
 
+    @ApiOperation(value = "Поиск товаров по категориям")
     @PostMapping
     @ResponseBody
     public ResponseEntity<Page<Product>> getUsersBySearchForm(@RequestBody SearchForm searchForm) {

@@ -1,5 +1,6 @@
 package ru.itis.demo.controllers;
 
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +19,7 @@ public class SignUpController {
     private final UsersService usersService;
     private final MailService mailService;
 
+    @ApiOperation(value = "Регистрация")
     @PostMapping("/signup")
     public ResponseEntity<String> signUp(@RequestBody UserForm form) {
         String str = signUpService.signUp(form);

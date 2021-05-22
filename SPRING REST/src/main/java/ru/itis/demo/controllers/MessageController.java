@@ -1,5 +1,6 @@
 package ru.itis.demo.controllers;
 
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -9,7 +10,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import ru.itis.demo.dto.MessageForm;
 import ru.itis.demo.models.Message;
-import ru.itis.demo.security.details.UserDetailsImpl;
+import ru.itis.demo.details.UserDetailsImpl;
 import ru.itis.demo.services.intrfases.MessageService;
 
 import java.util.List;
@@ -20,12 +21,14 @@ import java.util.List;
 public class MessageController {
     private final MessageService messageService;
 
+    @ApiOperation(value = "Получить все сообщения")
     @PreAuthorize("hasAuthority('USER')")
     @GetMapping
     public ResponseEntity<List<Message>> getMessagePage(){
         return ResponseEntity.ok(messageService.getUserMessage());
     }
 
+    @ApiOperation(value = "Добавить сообщение")
     @PreAuthorize("hasAuthority('USER')")
     @PostMapping
     public ResponseEntity<List<Message>> addMessage(@RequestBody MessageForm form){

@@ -2,7 +2,7 @@ package ru.itis.demo.services.intrfases;
 
 
 import ru.itis.demo.models.Message;
-import ru.itis.demo.security.details.UserDetailsImpl;
+import ru.itis.demo.details.UserDetailsImpl;
 
 import java.util.List;
 

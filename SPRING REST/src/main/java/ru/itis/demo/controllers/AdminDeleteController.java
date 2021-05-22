@@ -1,5 +1,6 @@
 package ru.itis.demo.controllers;
 
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,13 +17,13 @@ import java.util.List;
 public class AdminDeleteController {
     private final ProductService productService;
 
-//    @ApiOperation(value ="Получение проектов")
-//    @ApiResponses(value = {@ApiResponse(code = 200, message ="Проекты" , response = List.class )})
+    @ApiOperation(value ="Получение проектов")
     @GetMapping("/admin/del")
     public List<Product> getPage()  {
         return productService.getProducts();
     }
 
+    @ApiOperation(value = "Удалить товар")
     @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/admin/del/{id}")
     public List<Product> getPage(@PathVariable("id") Long id)  {

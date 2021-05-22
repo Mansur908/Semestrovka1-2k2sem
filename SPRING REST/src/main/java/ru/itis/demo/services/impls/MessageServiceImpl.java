@@ -6,7 +6,7 @@ import ru.itis.demo.models.Message;
 import ru.itis.demo.models.User;
 import ru.itis.demo.repositories.MessageRepository;
 import ru.itis.demo.repositories.UserRepository;
-import ru.itis.demo.security.details.UserDetailsImpl;
+import ru.itis.demo.details.UserDetailsImpl;
 import ru.itis.demo.services.intrfases.MessageService;
 
 import java.time.LocalDateTime;

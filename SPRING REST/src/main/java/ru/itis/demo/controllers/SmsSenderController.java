@@ -1,5 +1,6 @@
 package ru.itis.demo.controllers;
 
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -15,6 +16,7 @@ import ru.itis.demo.services.intrfases.SmsSender;
 public class SmsSenderController {
     private final SmsSender smsSender;
 
+    @ApiOperation(value = "Отправить SMS")
     @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/admin/sendSms")
     public ResponseEntity<String> sendSmsMessage(@RequestBody SmsSenderForm form) {

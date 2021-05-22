@@ -10,7 +10,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import ru.itis.demo.models.User;
-import ru.itis.demo.security.details.UserDetailsImpl;
+import ru.itis.demo.details.UserDetailsImpl;
 
 @Component
 public class JwtAuthenticationProvider implements AuthenticationProvider {

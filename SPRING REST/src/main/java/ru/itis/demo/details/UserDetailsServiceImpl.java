@@ -1,4 +1,4 @@
-package ru.itis.demo.security.details;
+package ru.itis.demo.details;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

@@ -7,7 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 import ru.itis.demo.dto.UserDto;
 import ru.itis.demo.models.User;
 import ru.itis.demo.repositories.UserRepository;
-import ru.itis.demo.security.details.UserDetailsImpl;
+import ru.itis.demo.details.UserDetailsImpl;
 import ru.itis.demo.services.intrfases.UsersService;
 
 import java.io.File;
